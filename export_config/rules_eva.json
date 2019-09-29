@@ -1,0 +1,113 @@
+{
+	"rules": {
+		"token_config": {
+			"lists": ["TokensConfig"],
+			"handlers": [
+				{
+					"type": "union_fields",
+					"config": {
+						"name": "restore",
+						"union_type": "map",
+						"fields": ["restore_timer", "restore_value", "restore_max"],
+						"alias": ["timer", "value", "max"]
+					}
+				},
+				{
+					"type": "add_id_as_field",
+					"config": {
+						"id": "name"
+					}
+				}
+			]
+		},
+
+		"token_groups": {
+			"lists": ["TokenGroups"],
+			"handlers": [
+				{
+					"type": "array_to_map",
+					"config": [
+						{
+							"field": "token1",
+							"keys": ["token_id", "amount"]
+						},
+						{
+							"field": "token2",
+							"keys": ["token_id", "amount"]
+						},
+						{
+							"field": "token3",
+							"keys": ["token_id", "amount"]
+						},
+						{
+							"field": "token4",
+							"keys": ["token_id", "amount"]
+						}
+					]
+				},
+				{
+					"type": "union_fields",
+					"config": {
+						"name": "tokens",
+						"union_type": "array",
+						"fields": ["token1", "token2", "token3", "token4"]
+					}
+				}
+			]
+		},
+
+		"token_lots": {
+			"lists": ["Lots"]
+		},
+
+		"iaps_android": {
+			"lists": ["Iaps"],
+			"handlers": [
+				{
+					"type": "remove_fields",
+					"config": {
+						"fields": ["ident_ios"]
+					}
+				},
+				{
+					"type": "rename_fields",
+					"config": {
+						"keys": {
+							"ident_android": "ident"
+						}
+					}
+				}
+			],
+			"save_param": {
+				"name": "iaps"
+			}
+		},
+
+		"iaps_ios": {
+			"lists": ["Iaps"],
+			"handlers": [
+				{
+					"type": "remove_fields",
+					"config": {
+						"fields": ["ident_android"]
+					}
+				},
+				{
+					"type": "rename_fields",
+					"config": {
+						"keys": {
+							"ident_ios": "ident"
+						}
+					}
+				}
+			],
+			"save_param": {
+				"name": "iaps"
+			}
+		},
+
+		"offers": {
+			"lists": ["Offers"]
+		}
+	}
+}

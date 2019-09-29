@@ -1,0 +1,3 @@
+#!/bin/bash
+# lhttps://github.com/Insality/defold-deployer
+use_latest_bob=true

@@ -1,0 +1,6 @@
+{
+  "title": "Test",
+  "time_format_d": "%iд %02iч",
+  "time_format_h": "%iч %02iм",
+  "time_format_m": "%i:%02i"
+}

@@ -1,0 +1,85 @@
+[project]
+title = defold-template
+dependencies = https://github.com/insalitygames/monarch/archive/master.zip,https://github.com/insalitygames/rendercam/archive/master.zip,https://github.com/insalitygames/defold-protobuf/archive/master.zip,https://github.com/insalitygames/defold-cjson/archive/master.zip,https://github.com/insalitygames/set_screen_position/archive/master.zip,https://github.com/insalitygames/deftest/archive/master.zip,https://github.com/insalitygames/defreview/archive/master.zip,https://github.com/insalitygames/DefVideoAds/archive/master.zip,https://github.com/insalitygames/defold-input/archive/master.zip,https://github.com/Insality/defold-eva/archive/master.zip
+custom_resources = /eva/resources,/resources
+bundle_resources = /bundle
+version = 1.0.0
+
+[bootstrap]
+main_collection = /assets/scenes/loader.collectionc
+
+[input]
+game_binding = /in/bindings/all.input_bindingc
+use_accelerometer = 0
+
+[display]
+width = 900
+height = 1600
+high_dpi = 1
+
+[ios]
+app_icon_120x120 = /bundle/icons/icon_120.png
+app_icon_180x180 = /bundle/icons/icon_180.png
+app_icon_76x76 = /bundle/icons/icon_76.png
+app_icon_152x152 = /bundle/icons/icon_152.png
+app_icon_57x57 = /bundle/icons/icon_57.png
+app_icon_114x114 = /bundle/icons/icon_114.png
+app_icon_72x72 = /bundle/icons/icon_72.png
+app_icon_144x144 = /bundle/icons/icon_144.png
+app_icon_167x167 = /bundle/icons/icon_167.png
+launch_image_320x480 = /bundle/launch_images/ios_launch_320x480.png
+launch_image_640x960 = /bundle/launch_images/ios_launch_640x960.png
+launch_image_640x1136 = /bundle/launch_images/ios_launch_640x1136.png
+launch_image_750x1334 = /bundle/launch_images/ios_launch_750x1334.png
+launch_image_768x1024 = /bundle/launch_images/ios_launch_768x1024.png
+launch_image_1536x2048 = /bundle/launch_images/ios_launch_1536x2048.png
+launch_image_1024x768 = /bundle/launch_images/ios_launch_1024x768.png
+launch_image_1242x2208 = /bundle/launch_images/ios_launch_1242x2208.png
+launch_image_2208x1242 = /bundle/launch_images/ios_launch_2208x1242.png
+launch_image_2048x1536 = /bundle/launch_images/ios_launch_2048x1536.png
+launch_image_2048x2732 = /bundle/launch_images/ios_launch_2048x2732.png
+launch_image_2732x2048 = /bundle/launch_images/ios_launch_2732x2048.png
+launch_image_1334x750 = /bundle/launch_images/ios_launch_1334x750.png
+launch_image_1125x2436 = /bundle/launch_images/ios_launch_1125x2436.png
+launch_image_2436x1125 = /bundle/launch_images/ios_launch_2436x1125.png
+launch_image_1668x2224 = /bundle/launch_images/ios_launch_1668x2224.png
+launch_image_2224x1668 = /bundle/launch_images/ios_launch_2224x1668.png
+bundle_identifier = free.insality.template
+
+[osx]
+bundle_identifier = free.insality.template
+
+[android]
+app_icon_36x36 = /bundle/icons/icon_36.png
+app_icon_48x48 = /bundle/icons/icon_48.png
+app_icon_72x72 = /bundle/icons/icon_72.png
+app_icon_96x96 = /bundle/icons/icon_96.png
+app_icon_144x144 = /bundle/icons/icon_144.png
+app_icon_192x192 = /bundle/icons/icon_192.png
+input_method = HiddenInputField
+immersive_mode = 1
+
+[script]
+shared_state = 1
+
+[physics]
+gravity_y = -1000.0
+scale = 0.01
+world_count = 1
+
+[eva]
+settings = 
+
+[iap]
+auto_finish_transactions = 0
+
+[model]
+max_count = 0
+
+[collection]
+max_instances = 256
+
+[graphics]
+texture_profiles = /eva/system/eva.texture_profiles
+max_draw_calls = 256
+
