@@ -104,10 +104,6 @@
 			"save_param": {
 				"name": "iaps"
 			}
-		},
-
-		"offers": {
-			"lists": ["Offers"]
 		}
 	}
 }

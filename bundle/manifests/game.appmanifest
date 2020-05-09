@@ -1,17 +1,20 @@
-# App manifest generated Mon Sep 30 2019 01:14:56 GMT+0300 (Moscow Standard Time)
-# Settings: Physics2D,Physics3D,Record,Gameroom
+# App manifest generated Sat May 09 2020 19:46:55 GMT+0300 (Moscow Standard Time)
+# Settings: Physics2D,Physics3D,Record,OpenGL
 platforms:
     x86_64-osx:
         context:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
+            frameworks: []
             linkFlags: []
 
     x86_64-linux:
         context:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
             linkFlags: []
 
@@ -20,6 +23,7 @@ platforms:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeJsLibs: []
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
             linkFlags: []
 
@@ -28,20 +32,23 @@ platforms:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeJsLibs: []
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
             linkFlags: []
 
     x86-win32:
         context:
-            excludeLibs: ["libphysics","libLinearMath","libBulletDynamics","libBulletCollision","libBox2D","librecord","vpx","gameroomext"]
-            excludeSymbols: ["GameroomExt"]
+            excludeLibs: ["libphysics","libLinearMath","libBulletDynamics","libBulletCollision","libBox2D","librecord","vpx"]
+            excludeSymbols: []
+            symbols: []
             libs: ["libphysics_null.lib","librecord_null.lib"]
             linkFlags: []
 
     x86_64-win32:
         context:
-            excludeLibs: ["libphysics","libLinearMath","libBulletDynamics","libBulletCollision","libBox2D","librecord","vpx","gameroomext"]
-            excludeSymbols: ["GameroomExt"]
+            excludeLibs: ["libphysics","libLinearMath","libBulletDynamics","libBulletCollision","libBox2D","librecord","vpx"]
+            excludeSymbols: []
+            symbols: []
             libs: ["libphysics_null.lib","librecord_null.lib"]
             linkFlags: []
 
@@ -50,6 +57,7 @@ platforms:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeJars: []
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
             linkFlags: []
 
@@ -58,6 +66,7 @@ platforms:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeJars: []
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
             linkFlags: []
 
@@ -65,20 +74,26 @@ platforms:
         context:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
+            frameworks: []
             linkFlags: []
 
     arm64-ios:
         context:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
+            frameworks: []
             linkFlags: []
 
     x86_64-ios:
         context:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx"]
             excludeSymbols: []
+            symbols: []
             libs: ["physics_null","record_null"]
+            frameworks: []
             linkFlags: []
 

@@ -1,0 +1,224 @@
+syntax = "proto3";
+import "evadata.proto";
+
+package eva;
+
+message StorageValue {
+	oneof value {
+		string s_value = 1;
+		double i_value = 2;
+		bool b_value = 3;
+	}
+}
+
+message Storage {
+	map<string, StorageValue> storage = 1;
+}
+
+message Sound {
+	float sound_gain = 1;
+	float music_gain = 2;
+}
+
+message Lang {
+	string lang = 1;
+}
+
+message Labels {
+	repeated string labels = 1;
+}
+
+message Saver {
+	uint32 version = 1;
+	string last_game_version = 2;
+	uint32 migration_version = 3;
+}
+
+message Device {
+	string device_id = 1;
+}
+
+message Timer {
+	string timer_id = 1;
+	uint32 end_time = 2;
+	uint32 pause_time = 3;
+	bool is_pause = 4;
+	bool auto_trigger = 5;
+}
+
+message Timers {
+	map<string, Timer> timers = 1;
+}
+
+message Rate {
+	uint32 promt_count = 1;
+	bool is_never_show = 2;
+	bool is_accepted = 3;
+}
+
+message Ads {
+	uint32 ads_loaded = 1;
+	uint32 interstitial_watched = 2;
+	uint32 rewarded_watched = 3;
+	bool ads_disabled = 4;
+}
+
+message Game {
+	uint32 played_time = 1;
+	uint32 game_start_count = 2;
+	float prefer_playing_time = 3;
+	repeated string game_start_dates = 4;
+	uint32 last_uptime = 5;
+	uint32 last_diff_time = 6;
+	uint64 game_uid = 7;
+	uint32 first_start_time = 8;
+	uint32 session_start_time = 9;
+	uint32 last_play_timepoint = 10;
+}
+
+message Token {
+	int32 amount = 1;
+	int32 offset = 2;
+}
+
+message Tokens {
+	map<string, Token> tokens = 1;
+}
+
+message TokenRestoreConfig {
+	bool is_enabled = 1;
+	double last_restore_time = 2;
+	uint32 timer = 3;
+	int32 value = 4 [default = 1];
+	int32 max = 5 [default = 2147483647];
+}
+
+message Container {
+	string type = 1;
+	map<string, Token> tokens = 2;
+	map<string, TokenRestoreConfig> restore_config = 3;
+	map<string, double> infinity_timers = 4;
+}
+
+message Containers {
+	map<string, Container> containers = 1;
+}
+
+message Lot {
+	Tokens price = 1;
+	Tokens reward = 2;
+}
+
+message Gdpr {
+	bool is_accepted = 1;
+	string accept_date = 2;
+}
+
+message Offer {
+	string timer_id = 1;
+}
+
+message Offers {
+	map<string, Offer> offers = 1;
+}
+
+message Daily {
+	bool is_active = 1;
+	uint32 last_pick_time = 2;
+	repeated bool reward_state = 3;
+}
+
+message Festivals {
+	repeated string current = 1;
+	map<string, uint32> completed = 2;
+}
+
+message QuestData {
+	repeated int32 progress = 1;
+	bool is_active = 2;
+	uint32 start_time = 3;
+}
+
+message Quests {
+	map<string, QuestData> current = 1;
+	repeated string completed = 2;
+}
+
+message IapDetails {
+	float price = 1;
+	string currency_code = 2;
+	string title = 3;
+	string description = 4;
+	string price_string = 5;
+	string ident = 6;
+	bool is_available = 7;
+}
+
+message PushInfo {
+	int32 id = 1;
+	uint32 time = 2;
+	string category = 3;
+	bool is_triggered = 4;
+}
+
+message Push {
+	repeated PushInfo pushes = 1;
+}
+
+message InvoiceInfo {
+	string category = 1;
+	string title = 2;
+	string text = 3;
+	uint32 start_time = 4;
+	uint32 life_time = 5;
+	evadata.Tokens reward = 6;
+}
+
+message Invoices {
+	map<string, InvoiceInfo> invoices = 1;
+}
+
+message Truck {
+	bool is_enabled = 1;
+	bool is_arrived = 2;
+	uint32 arrive_time = 3;
+	uint32 leave_time = 4;
+}
+
+message Trucks {
+	map<string, Truck> trucks = 1;
+}
+
+message IapInfo {
+	string transaction_id = 1;
+	string iap_id = 2;
+	int32 state = 3;
+	string date = 4;
+	string ident = 5;
+}
+
+message Iaps {
+	repeated IapInfo purchased_iaps = 1;
+	repeated IapInfo invalid_iaps = 2;
+}
+
+
+message Skill {
+	double last_use_time = 1;
+	double next_restore_time = 2;
+	double end_duration_time = 3;
+	uint32 stacks = 4;
+	uint32 use_count = 5;
+	bool is_active = 6;
+	bool is_cooldown = 7;
+}
+
+// All skills info in specific container
+message Skills {
+	map<string, Skill> skill_data = 1;
+}
+
+// All skills container in the world
+message SkillContainers {
+	map<string, Skills> containers = 1;
+}
