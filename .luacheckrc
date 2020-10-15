@@ -63,4 +63,7 @@ globals = {
   "firebase",
   "defreview",
   "pb",
+  "editor",
+  "vibrate",
+  "taptic_engine"
 }
