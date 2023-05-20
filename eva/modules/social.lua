@@ -13,37 +13,37 @@ local M = {}
 
 
 function M.login_platform()
-    app._social_data.platform:login()
+	app._social_data.platform:login()
 end
 
 
 function M.logout_platform()
-    app._social_data.platform:logout()
+	app._social_data.platform:logout()
 end
 
 
 function M.is_logged()
-    return app._social_data.platform:is_logged()
+	return app._social_data.platform:is_logged()
 end
 
 
 function M.login_toggle_platform()
-    if M.is_logged() then
-        M.logout_platform()
-    else
-        M.login_platform()
-    end
+	if M.is_logged() then
+		M.logout_platform()
+	else
+		M.login_platform()
+	end
 end
 
 
 function M.after_eva_init()
-    app._social_data = {
-        platform = SocialStub()
-    }
+	app._social_data = {
+		platform = SocialStub()
+	}
 
-    if device.is_android() and gpgs then
-        app._social_data.platform = SocialGPGS()
-    end
+	if device.is_android() and gpgs then
+		app._social_data.platform = SocialGPGS()
+	end
 end
 
 

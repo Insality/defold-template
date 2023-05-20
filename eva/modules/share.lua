@@ -14,20 +14,20 @@ local M = {}
 -- @function eva.share.screen
 -- @tparam string text The optional text to share with screenshot
 function M.screen(text)
-    if not M.is_supported() then
-        logger:info("The eva.share module is not available on this platform")
-    end
+	if not M.is_supported() then
+		logger:info("The eva.share module is not available on this platform")
+	end
 
-    local buffer = screenshot.png()
-    share.image(buffer, text)
+	local buffer = screenshot.png()
+	share.image(buffer, text)
 end
 
 
 function M.is_supported()
-    if share and screenshot then
-        return true
-    end
-    return false
+	if share and screenshot then
+		return true
+	end
+	return false
 end
 
 

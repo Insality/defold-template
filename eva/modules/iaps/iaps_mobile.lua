@@ -10,19 +10,19 @@ local Iaps = {}
 
 
 local function iap_listener(self, transaction, error)
-    if error then
-        logger:error("Iap listener error", { error = error })
-    end
+	if error then
+		logger:error("Iap listener error", { error = error })
+	end
 end
 
 
 function Iaps.init()
-    iap.set_listener(iap_listener)
+	iap.set_listener(iap_listener)
 end
 
 
 function Iaps.buy(iap_ident)
-    iap.buy(iap_ident)
+	iap.buy(iap_ident)
 end
 
 
@@ -32,12 +32,12 @@ end
 
 
 function Iaps.fetch_products()
-    iap.list(luax.table.list(app.iap_products, "ident"), list_callback)
+	iap.list(luax.table.list(app.iap_products, "ident"), list_callback)
 end
 
 
 function Iaps.restore()
-    iap.restore()
+	iap.restore()
 end
 
 

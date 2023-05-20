@@ -135,7 +135,7 @@ end
 	call this method you're inspecting, you can optionally
 	provide a levels parameter to traceback a number of levels.
 	Params: [methodName:string] the name of the method you wish to inspect.
-	        [levels:number:optional] the amount of levels you wish to traceback, defaults to 1.
+			[levels:number:optional] the amount of levels you wish to traceback, defaults to 1.
 ]]
 function ProFi:setInspect( methodName, levels )
 	if self.inspect then
