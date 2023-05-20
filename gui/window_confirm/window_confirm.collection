@@ -1,10 +1,10 @@
-name: "window_info"
+name: "window_confirm"
 scale_along_z: 0
 embedded_instances {
   id: "go"
   data: "components {\n"
-  "  id: \"window_info\"\n"
-  "  component: \"/gui/window_info/window_info.gui\"\n"
+  "  id: \"window_confirm\"\n"
+  "  component: \"/gui/window_confirm/window_confirm.gui\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"

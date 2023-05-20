@@ -55,12 +55,12 @@ end
 
 
 local function bind_callbacks(client, socket)
-	nakama.on_disconnect(socket, on_disconnect)
-	nakama.on_notification(socket, on_notification)
-	nakama.on_matchdata(socket, on_matchdata)
-	nakama.on_matchpresence(socket, on_matchpresence)
-	nakama.on_matchmakermatched(socket, on_matchmakermatched)
-	nakama.on_statuspresence(socket, on_statuspresence)
+	--nakama.on_disconnect(socket, on_disconnect)
+	--nakama.on_notification(socket, on_notification)
+	--nakama.on_matchdata(socket, on_matchdata)
+	--nakama.on_matchpresence(socket, on_matchpresence)
+	--nakama.on_matchmakermatched(socket, on_matchmakermatched)
+	--nakama.on_statuspresence(socket, on_statuspresence)
 end
 
 

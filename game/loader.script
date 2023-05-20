@@ -2,6 +2,7 @@ local eva = require("eva.eva")
 local app = require("eva.app")
 local druid = require("druid.druid")
 local evaconst = require("eva.const")
+local sitelock = require("eva.libs.sitelock")
 
 local const = require("game.const")
 local druid_style = require("game.settings.druid_style")
@@ -14,8 +15,9 @@ local Platform = require("game.profile.Platform")
 local Analytics = require("game.analytics.Analytics")
 local Server = require("game.server.Server")
 
----@class scene.loader
+sitelock.add_domain("insality.com")
 
+---@class scene.loader
 
 ---@param self scene.loader
 local function setup_druid(self)
@@ -102,6 +104,16 @@ local function connect_to_server(self)
 end
 
 
+local function check_sitelock(self)
+	if html5 and not eva.game.is_debug() then
+		if not sitelock.verify_domain() then
+			return false
+		end
+	end
+	return true
+end
+
+
 ---@param self scene.loader
 function init(self)
 	local original_config = sys.get_config("eva.settings")
@@ -116,7 +128,7 @@ function init(self)
 	app.profile = Profile()
 	app.platform = Platform()
 	app.analytics = Analytics()
-	--app.server = Server()
+	app.server = Server()
 
 	msg.post(".", const.MSG.START_LOADING)
 end
@@ -141,12 +153,12 @@ function on_message(self, message_id, message, sender)
 		end
 
 		app.platform:login(function()
-			connect_to_server(self)
+			--connect_to_server(self)
 			msg.post(".", "start_game")
 		end)
 	end
 	if message_id == const.MSG.START_GAME then
-		--eva.window.show_scene(const.WINDOW.SCENE_MENU)
-		eva.window.show_scene(const.WINDOW.SCENE_GAME)
+		eva.window.show_scene(const.WINDOW.SCENE_MENU)
+		--eva.window.show_scene(const.WINDOW.SCENE_GAME)
 	end
 end

@@ -1,0 +1,151 @@
+local druid = require("druid.druid") ---@type druid
+local druid_helper = require("druid.helper")
+
+local eva = require("eva.eva") ---@type eva
+local const = require("game.const")
+
+local WINDOW_ID = const.WINDOW.WINDOW_CONFIRM
+
+---@class window.confirm
+---@field data window.confirm_data
+
+---@class window.confirm_data
+---@field cost number Optional
+---@field callbacks window.confirm_callbacks
+---@field text string
+---@field header string Optional
+---@field button_ok_text string Optional
+---@field button_cancel_text string Optional
+---@field checkbox_text string Optional
+---@field is_disable_close boolean
+
+---@class window.confirm_callbacks
+---@field on_cancel function
+---@field on_agree function
+---@field on_checkbox function
+
+
+---@param self window.confirm
+local function close_window(self, callback)
+	local callbacks = self.data.callbacks
+	local is_checked = self.checkbox:get_state()
+	eva.window.disappear(WINDOW_ID, function()
+		if callbacks and callbacks.on_cancel then
+			callbacks.on_cancel()
+		end
+		if callbacks and callbacks.on_checkbox and is_checked then
+			callbacks.on_checkbox()
+		end
+		if callback then
+			callback()
+		end
+	end)
+end
+
+
+local function close_with_agree(self)
+	local callbacks = self.data.callbacks
+	eva.window.disappear(WINDOW_ID, function()
+		if callbacks and callbacks.on_agree then
+			callbacks.on_agree()
+		end
+	end)
+end
+
+
+local function close_with_open_shop(self)
+	close_window(self, function()
+		if eva.window.is_open(const.WINDOW.WINDOW_SHOP) then
+			eva.window.msg_post("open_tab", {
+				tab = "tab_gold"
+			})
+		else
+			eva.window.show(const.WINDOW.WINDOW_SHOP, {
+				is_return = true
+				-- open_tab = "tab_gold"
+			})
+		end
+	end)
+end
+
+
+---@param self window.confirm
+local function on_agree_button(self)
+	if self.data.cost then
+		if eva.wallet.is_enough(const.ITEM.GOLD, self.data.cost) then
+			eva.wallet.pay(const.ITEM.GOLD, self.data.cost)
+			close_with_agree(self)
+		else
+			close_with_open_shop(self)
+		end
+	else
+		close_with_agree(self)
+	end
+end
+
+
+---@param self window.confirm
+function init(self)
+	self.druid = druid.new(self)
+	self.root = gui.get_node("root")
+	self.data = eva.window.get_data(WINDOW_ID)
+
+	self.druid:new_button("close_background", close_window)
+	self.druid:new_blocker("content")
+	self.druid:new_button("button_close/button", close_window)
+	self.druid:new_button("button_cancel", close_window)
+	self.druid:new_button("button_ok", on_agree_button)
+
+	self.druid:new_text("text_header", self.data.header or eva.lang.txt("ui_confirm_header"))
+	self.druid:new_text("text_ok", self.data.button_ok_text or eva.lang.txt("ui_confirm_ok"))
+	self.druid:new_text("text_cancel", self.data.button_cancel_text or eva.lang.txt("ui_confirm_cancel"))
+	self.druid:new_text("text_info", self.data.text)
+	self.druid:new_text("text_checkbox", self.data.checkbox_text)
+
+	self.checkbox = self.druid:new_checkbox("icon_check", self._on_checkbox_click, "checkbox_confirm")
+	gui.set_enabled(gui.get_node("panel_checkbox"), self.data.checkbox_text)
+
+	druid_helper.centrate_nodes(4, gui.get_node("text_checkbox"), gui.get_node("checkbox_confirm"))
+
+	if self.data.cost then
+		gui.set_enabled(gui.get_node("panel_no_cost"), false)
+		self.druid:new_text("text_cost_amount",self.data.cost)
+		druid_helper.centrate_nodes(8, gui.get_node("icon_gold"), gui.get_node("text_cost_amount"))
+	else
+		gui.set_enabled(gui.get_node("panel_cost"), false)
+	end
+
+	if self.data.is_disable_close then
+		gui.set_enabled(gui.get_node("close_background"), false)
+		gui.set_enabled(gui.get_node("button_close"), false)
+	else
+		self.druid:new_back_handler(close_window)
+	end
+
+	eva.window.appear(WINDOW_ID)
+end
+
+
+---@param self window.confirm
+function final(self)
+	self.druid:final()
+end
+
+
+---@param self window.confirm
+function update(self, dt)
+	self.druid:update(dt)
+end
+
+
+---@param self window.confirm
+function on_message(self, message_id, message, sender)
+	eva.window.on_message(WINDOW_ID, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+end
+
+
+---@param self window.confirm
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end

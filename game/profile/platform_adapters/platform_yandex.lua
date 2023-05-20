@@ -3,7 +3,9 @@ local eva = require("eva.eva")
 local class = require("eva.libs.middleclass")
 local evaconst = require("eva.const")
 local log = require("eva.log")
-local yagames = evaconst.require("yagames.yagames")
+
+--- This dependencies will be overriden in init
+local yagames = nil
 
 local const = require("game.const")
 local profile_utils = require("game.profile.profile_utils")
@@ -19,6 +21,8 @@ local PlatformYandex = class("platform.yandex", PlatformBase)
 ---@param data game.PlatformData
 function PlatformYandex:initialize(platform_name, data)
 	PlatformBase:initialize(platform_name, data)
+	yagames = evaconst.require("yagames.yagames")
+
 	self._is_player_inited = false
 	self._share_url = "%s"
 end

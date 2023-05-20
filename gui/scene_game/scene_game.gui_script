@@ -7,7 +7,22 @@ local const = require("game.const")
 
 ---@param self scene.game
 local function on_button_menu(self)
-	eva.window.show(const.WINDOW.WINDOW_SETTINGS)
+	eva.window.show(const.WINDOW.WINDOW_SETTINGS, {
+		callbacks = {
+			on_exit = function()
+
+				---@type window.confirm_data
+				local window_confirm_data = {}
+				window_confirm_data.text = "Sure exit from game?"
+				window_confirm_data.callbacks = {
+					on_agree = function()
+						eva.window.show(const.WINDOW.SCENE_MENU)
+					end
+				}
+				eva.window.show(const.WINDOW.WINDOW_CONFIRM, window_confirm_data)
+			end
+		}
+	})
 end
 
 

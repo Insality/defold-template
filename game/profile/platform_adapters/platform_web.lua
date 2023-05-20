@@ -2,9 +2,11 @@ local class = require("eva.libs.middleclass")
 local log = require("eva.log")
 local evaconst = require("eva.const")
 
-local yagames = evaconst.require("yagames.yagames")
 local profile_utils = require("game.profile.profile_utils")
 local PlatformBase = require("game.profile.platform_adapters.platform_base")
+
+--- This dependencies will be overriden in init
+local yagames = nil
 
 local logger = log.get_logger("platform")
 
@@ -16,6 +18,8 @@ local PlatformWeb = class("platform.web", PlatformBase)
 ---@param data game.PlatformData
 function PlatformWeb:initialize(platform_name, data)
 	PlatformBase:initialize(platform_name, data)
+
+	yagames = evaconst.require("yagames.yagames")
 
 	local origin = html5.run('window.location.origin;') or ""
 	local pathname = html5.run('window.location.pathname;') or ""

@@ -1,0 +1,36 @@
+version: '3'
+services:
+  nakama:
+    image: heroiclabs/nakama:3.9.0
+    entrypoint:
+      - "/bin/sh"
+      - "-ecx"
+      - >
+        /nakama/nakama migrate up --database.address "DBADRESS" &&
+        exec /nakama/nakama --name Template --database.address "DBADRESS" \
+                            --logger.level DEBUG --session.token_expiry_sec 10800 \
+                            --socket.server_key SERVER_KER_HERE --runtime.http_key HTTP_KEY_HERE \
+                            --session.encryption_key ENCRYPTION_KEY_HERE --session.refresh_encryption_key REFRESH_KEY_HERE \
+                            --console.username USERNAME --console.password PASSWORD --console.port 7569 \
+                            --console.signing_key SIGN_KEY --matchmaker.interval_sec 10 --shutdown_grace_sec 360
+    restart: "no"
+    volumes:
+      - ./:/nakama/data
+      - ../game/shared:/nakama/data/modules/game/shared
+      - ../game/const.lua:/nakama/data/modules/game/const.lua
+    expose:
+      - "7349"
+      - "7350"
+      - "7569"
+      - "9100"
+    ports:
+      - "7349:7349"
+      - "7350:7350"
+      - "7569:7569"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7350/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  data:

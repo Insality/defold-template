@@ -72,10 +72,10 @@ require("eva.modules.ads.ads_unity")
 -- require("yagames.yagames")
 
 -- Uncomment is nakama server is used
--- require("nakama.engine.defold")
--- require("nakama.nakama")
--- require("nakama.session")
--- require("nakama.util.log")
+ require("nakama.engine.defold")
+ require("nakama.nakama")
+ require("nakama.session")
+ require("nakama.util.log")
 
 
 --- @type eva

@@ -5,4 +5,44 @@ package game;
 
 
 message ProfileData {
+	string user_id = 1;
+	string user_code = 2;
+	TutorialData tutorial_data = 3;
+}
+
+
+message TutorialData {
+	bool is_enabled = 1;
+}
+
+
+message PlatformData {
+	message YandexData {
+		string user_id = 1;
+		bool is_connected = 2;
+		string name = 3;
+	}
+
+	message AppleData {
+		string user_id = 1;
+		bool is_connected = 2;
+		string name = 3;
+	}
+
+	message GoogleData {
+		string user_id = 1;
+		bool is_connected = 2;
+		string name = 3;
+	}
+
+	message FacebookData {
+		string user_id = 1;
+		bool is_connected = 2;
+		string name = 3;
+	}
+
+	YandexData yandex_data = 1;
+	AppleData apple_data = 2;
+	GoogleData google_data = 3;
+	FacebookData facebook_data = 4;
 }

@@ -156,7 +156,7 @@
 		"print_save_at_start": false
 	},
 	"server": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"game_id": "FFFFF",
 		"server_host": "you.server.adress",
 		"server_port": 443,

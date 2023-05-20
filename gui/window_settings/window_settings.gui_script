@@ -15,6 +15,7 @@ local BUTTON_DISABLED = "button_yellow"
 ---@param callback function
 local function close_window(self, callback)
 	local callbacks = self.data.callbacks
+
 	eva.window.disappear(WINDOW_ID, function()
 		if callbacks and callbacks.on_close then
 			callbacks.on_close()
@@ -51,6 +52,15 @@ end
 
 
 ---@param self window.settings
+local function on_button_exit(self)
+	local callbacks = self.data.callbacks
+	if callbacks and callbacks.on_exit then
+		callbacks.on_exit()
+	end
+end
+
+
+---@param self window.settings
 function init(self)
 	self.druid = druid.new(self)
 	self.root = gui.get_node("root")
@@ -59,7 +69,7 @@ function init(self)
 	self.druid:new_button("window_shadow/root", close_window)
 	self.druid:new_back_handler(close_window)
 	self.druid:new_blocker("window_background")
-	self.druid:new_button("button_close", close_window)
+	self.druid:new_button("button_close/button", close_window)
 
 	self.druid:new_lang_text("text_sound", "ui_sound")
 	self.druid:new_lang_text("text_music", "ui_music")
@@ -97,11 +107,12 @@ function init(self)
 
 	self.druid:new_layout("node_upscale_limit"):set_max_gui_upscale(const.MAX_GUI_UPSCALE)
 
-	self.druid:new_button("button_exit/button", function()
-		eva.saver.delete()
-		eva.game.reboot()
-	end)
+	self.druid:new_button("button_exit/button", on_button_exit)
 	self.druid:new_button("button_language/button", eva.lang.set_next_lang)
+
+	if self.data.hide_exit_button then
+		gui.set_enabled(gui.get_node("button_exit/button"), false)
+	end
 
 	eva.window.appear(WINDOW_ID)
 end

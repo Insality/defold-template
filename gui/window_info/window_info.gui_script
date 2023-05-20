@@ -10,10 +10,9 @@ local WINDOW_ID = const.WINDOW.WINDOW_INFO
 
 ---@class window.info_data
 ---@field text string
----@field header string Optional
----@field only_button_close boolean
----@field button_text string Optional
----@field extra_size number Optional
+---@field header_text string|nil
+---@field button_text string|nil
+---@field is_only_agree_button boolean|nil
 
 
 ---@param self window.info
@@ -27,41 +26,11 @@ local function close_window(self)
 end
 
 
-local function change_y(node_name, delta)
-	local node = gui.get_node(node_name)
-	local pos = gui.get_position(node)
-	pos.y = pos.y + delta
-	gui.set_position(node, pos)
-end
-
-
-local function change_size_y(node_name, delta)
-	local node = gui.get_node(node_name)
-	local pos = gui.get_size(node)
-	pos.y = pos.y + delta
-	gui.set_size(node, pos)
-end
-
-
 ---@param self window.info
 function init(self)
 	self.druid = druid.new(self)
 	self.root = gui.get_node("root")
 	self.data = eva.window.get_data(WINDOW_ID)
-
-	if self.data.extra_size then
-		local half = self.data.extra_size / 2
-		change_y("window_header", half)
-		change_y("button_close", half)
-		change_y("button_ok", -half)
-		change_size_y("window_background", half * 2)
-
-		local text_node = gui.get_node("text_info")
-		local size = gui.get_size(text_node)
-		local scale = gui.get_scale(text_node)
-		size.y = size.y + half / scale.x
-		gui.set_size(text_node, size)
-	end
 
 	if self.data.only_button_close then
 		self.druid:new_button("close_background", close_window)
@@ -70,12 +39,14 @@ function init(self)
 	end
 
 	self.druid:new_blocker("content")
-	self.druid:new_button("button_close", close_window)
-	self.druid:new_button("button_ok", close_window)
+	self.druid:new_button("button_close/button", close_window)
+	self.druid:new_button("button_agree/button", close_window)
 
-	self.druid:new_text("text_header", self.data.header or eva.lang.txt("ui_info_header"))
-	self.druid:new_text("text_ok", self.data.button_text or eva.lang.txt("ui_info_ok"))
+	self.druid:new_text("text_header", self.data.header_text or eva.lang.txt("ui_info_header"))
+	self.druid:new_text("button_agree/text", self.data.button_text or eva.lang.txt("ui_agree"))
 	self.druid:new_text("text_info", self.data.text)
+
+	self.druid:new_layout("node_upscale_limit"):set_max_gui_upscale(const.MAX_GUI_UPSCALE)
 
 	eva.window.appear(WINDOW_ID)
 end

@@ -69,4 +69,6 @@ globals = {
   "share",
   "gpgs",
   "clipboard",
+  "gameanalytics",
+  "lua_script_instance",
 }

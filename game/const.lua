@@ -35,8 +35,20 @@ M.SOUND = {
 
 
 M.RANDOM_SOUND_SPEED = function()
-    return 1 + math.random() * 0.2 - 0.1
+	return 1 + math.random() * 0.2 - 0.1
 end
+
+
+M.EVENT = {
+
+}
+
+
+M.SERVER_STORAGE = {
+	USER_CODE_COLLECTION = "user_codes",
+	USER_CODE_TOTAL_USERS_KEY = "total_users",
+	USER_CODE_KEY = "user_code",
+}
 
 
 
