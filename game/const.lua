@@ -1,10 +1,12 @@
 local M = {}
 
 M.MAX_GUI_UPSCALE = 1.25
+M.SCENE_TRANSITION_TIME = 0.18
 
 
 M.PATH = {
-
+	TRANSITION = "loader:/ui_scene_loader#ui_scene_loader",
+	GUI = "scene_game:/gui"
 }
 
 
@@ -13,6 +15,7 @@ M.MSG = {
 	LOADER_LOGO_SHOWED = hash("loader_logo_showed"),
 	START_LOADING = hash("start_loading"),
 	START_GAME = hash("start_game"),
+	TRANSITION = hash("transition"),
 }
 
 
@@ -40,7 +43,10 @@ end
 
 
 M.EVENT = {
-
+	---@class Event.MapTransition
+	---@field is_start boolean
+	---@field is_finish boolean
+	MAP_TRANSITION = "map_transition",
 }
 
 
@@ -50,6 +56,10 @@ M.SERVER_STORAGE = {
 	USER_CODE_KEY = "user_code",
 }
 
+
+M.RENDER_ORDER = {
+	TRANSITION = 13
+}
 
 
 return M

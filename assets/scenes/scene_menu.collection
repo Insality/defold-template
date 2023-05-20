@@ -1,4 +1,4 @@
-name: "scene_map"
+name: "scene_menu"
 instances {
   id: "camera"
   prototype: "/rendercam/camera.go"

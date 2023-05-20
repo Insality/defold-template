@@ -251,8 +251,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 837.0
-    y: 795.0
+    x: 200.0
+    y: 100.0
     z: 0.0
     w: 1.0
   }
@@ -262,37 +262,21 @@ nodes {
     z: 1.0
     w: 1.0
   }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/background_window"
-  id: "window_background"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
+  type: TYPE_TEMPLATE
+  id: "base_window"
   parent: "node_upscale_limit"
-  layer: "general"
+  layer: ""
   inherit_alpha: true
-  slice9 {
-    x: 84.0
-    y: 84.0
-    z: 84.0
-    w: 84.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
   alpha: 1.0
+  template: "/gui/window_template/base_window.gui"
   template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
   custom_type: 0
   enabled: true
-  visible: true
 }
 nodes {
   position {
-    x: -335.0
-    y: 325.0
+    x: 0.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -309,8 +293,67 @@ nodes {
     w: 1.0
   }
   size {
-    x: 450.0
-    y: 80.0
+    x: 840.0
+    y: 700.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: "window_general/background_window"
+  id: "base_window/background"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  parent: "base_window"
+  layer: "general"
+  inherit_alpha: true
+  slice9 {
+    x: 84.0
+    y: 84.0
+    z: 84.0
+    w: 84.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  overridden_fields: 4
+  template_node_child: true
+  size_mode: SIZE_MODE_MANUAL
+  custom_type: 0
+  enabled: true
+  visible: true
+}
+nodes {
+  position {
+    x: 0.0
+    y: 350.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 0.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -323,12 +366,12 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "window_general/empty"
-  id: "panel_header"
+  id: "base_window/N_Anchor"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
   adjust_mode: ADJUST_MODE_FIT
-  parent: "window_background"
+  parent: "base_window/background"
   layer: "general"
   inherit_alpha: true
   slice9 {
@@ -341,7 +384,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
-  template_node_child: false
+  template_node_child: true
   size_mode: SIZE_MODE_MANUAL
   custom_type: 0
   enabled: true
@@ -349,8 +392,8 @@ nodes {
 }
 nodes {
   position {
-    x: 0.0
-    y: 0.0
+    x: -335.0
+    y: -70.0
     z: 0.0
     w: 1.0
   }
@@ -382,7 +425,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "Settings"
   font: "game"
-  id: "text_header"
+  id: "base_window/text_header"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -400,13 +443,14 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  parent: "panel_header"
+  parent: "base_window/N_Anchor"
   layer: "text"
   inherit_alpha: true
   alpha: 1.0
   outline_alpha: 0.0
   shadow_alpha: 0.0
-  template_node_child: false
+  overridden_fields: 8
+  template_node_child: true
   text_leading: 1.0
   text_tracking: 0.0
   custom_type: 0
@@ -415,8 +459,8 @@ nodes {
 }
 nodes {
   position {
-    x: 310.0
-    y: 325.0
+    x: 335.0
+    y: -70.0
     z: 0.0
     w: 1.0
   }
@@ -445,20 +489,20 @@ nodes {
     w: 1.0
   }
   type: TYPE_TEMPLATE
-  id: "button_close"
-  parent: "window_background"
+  id: "base_window/button_close"
+  parent: "base_window/N_Anchor"
   layer: ""
   inherit_alpha: true
   alpha: 1.0
   template: "/gui/components/button_close.gui"
-  template_node_child: false
+  template_node_child: true
   custom_type: 0
   enabled: true
 }
 nodes {
   position {
     x: 0.0
-    y: 8.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -489,12 +533,12 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "window_general/button_close"
-  id: "button_close/button"
+  id: "base_window/button_close/button"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
-  parent: "button_close"
+  parent: "base_window/button_close"
   layer: "general"
   inherit_alpha: true
   slice9 {
@@ -547,12 +591,12 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "window_general/button_close"
-  id: "button_close/icon"
+  id: "base_window/button_close/icon"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
-  parent: "button_close/button"
+  parent: "base_window/button_close/button"
   layer: "general"
   inherit_alpha: true
   slice9 {
@@ -592,7 +636,7 @@ nodes {
   }
   size {
     x: 700.0
-    y: 700.0
+    y: 500.0
     z: 0.0
     w: 1.0
   }
@@ -632,7 +676,7 @@ nodes {
 nodes {
   position {
     x: -170.0
-    y: 230.0
+    y: 219.0
     z: 0.0
     w: 1.0
   }
@@ -983,7 +1027,7 @@ nodes {
 nodes {
   position {
     x: 170.0
-    y: 230.0
+    y: 219.0
     z: 0.0
     w: 1.0
   }
@@ -1334,7 +1378,7 @@ nodes {
 nodes {
   position {
     x: -170.0
-    y: 100.0
+    y: 89.0
     z: 0.0
     w: 1.0
   }
@@ -1685,7 +1729,7 @@ nodes {
 nodes {
   position {
     x: 170.0
-    y: 100.0
+    y: 89.0
     z: 0.0
     w: 1.0
   }
@@ -2036,7 +2080,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: -150.0
+    y: -104.0
     z: 0.0
     w: 1.0
   }
@@ -2203,7 +2247,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: -260.0
+    y: -214.0
     z: 0.0
     w: 1.0
   }

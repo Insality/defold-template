@@ -4,6 +4,7 @@
 
 
 local app = require("eva.app")
+local log = require("eva.log")
 local luax = require("eva.luax")
 local const = require("eva.const")
 
@@ -11,6 +12,8 @@ local utils = require("eva.modules.utils")
 local events = require("eva.modules.events")
 local proto = require("eva.modules.proto")
 local saver = require("eva.modules.saver")
+
+local logger = log.get_logger("eva.lang")
 
 local M = {}
 local EMPTY_STRING = ""
@@ -20,7 +23,14 @@ local function load_lang(lang)
 	local filename = settings.lang_paths[lang]
 
 	app.clear("lang_dict")
-	app.lang_dict = utils.load_json(filename) or {}
+	local loaded_data = utils.load_json(filename)
+	if loaded_data then
+		logger:debug("Loaded lang file", { filename = filename, lang = lang })
+	else
+		logger:error("Can't load lang file", { filename = filename })
+	end
+
+	app.lang_dict = loaded_data or {}
 end
 
 

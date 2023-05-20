@@ -11,6 +11,7 @@
 -- callback should be executed always!
 -- @local
 
+local eva = require("eva.eva")
 local luax = require("eva.luax")
 local const = require("game.const")
 
@@ -49,11 +50,15 @@ end
 
 
 local function before_show_scene(cb)
-	cb()
+	local time = const.SCENE_TRANSITION_TIME
+	msg.post(const.PATH.TRANSITION, const.MSG.TRANSITION, { is_enable = true, time = time })
+	timer.delay(time, false, cb)
 end
 
 
 local function after_show_scene(cb)
+	local time = const.SCENE_TRANSITION_TIME
+	msg.post(const.PATH.TRANSITION, const.MSG.TRANSITION, { is_enable = false, time = time })
 	if cb then
 		cb()
 	end

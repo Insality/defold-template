@@ -1,0 +1,43 @@
+local eva = require("eva.eva")
+local const = require("game.const")
+local druid = require("druid.druid")
+
+local UiSceneTransition = require("gui.ui_scene_transition.ui_scene_transition")
+
+
+function init(self)
+	self.druid = druid.new(self)
+	self.ui_scene_transition = self.druid:new(UiSceneTransition) ---@type ui_scene_transition
+	self._is_enabled = false
+
+	gui.set_render_order(const.RENDER_ORDER.TRANSITION)
+end
+
+function final(self)
+	self.druid:final()
+end
+
+
+function on_input(self)
+	return true
+end
+
+
+function on_message(self, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+	if message_id == const.MSG.TRANSITION then
+		self._is_enabled = message.is_enable
+
+		if self._is_enabled then
+			eva.events.event(const.EVENT.MAP_TRANSITION, { is_start = true })
+			msg.post(".", "acquire_input_focus")
+		end
+
+		self.ui_scene_transition:set_loading(self._is_enabled, function()
+			if not self._is_enabled then
+				eva.events.event(const.EVENT.MAP_TRANSITION, { is_finish = true })
+				msg.post(".", "release_input_focus")
+			end
+		end)
+	end
+end

@@ -96,6 +96,16 @@ function M.show_scene(scene_id, data)
 	-- To sure, resources is excluded, need to clean build folder?
 	-- Or distclean, dunno
 
+	-- Handle window queue
+	if #app.window.queue > 0 then
+		logger:debug("Close all to show new scene", { scene_id = scene_id, queue = #app.window.queue })
+		M.close_all(function()
+			M.show_scene(scene_id, data)
+		end)
+
+		return false
+	end
+
 	-- Praise the pyramids!
 	settings.before_show_scene(function()
 		if app.window.last_scene then
@@ -216,8 +226,10 @@ end
 
 --- Close all windows
 -- @function eva.window.close_all
-function M.close_all()
+-- @tparam function callback The callback function
+function M.close_all(callback)
 	app.window.closing_all = true
+	app.window.close_all_callback = callback
 	M.close()
 end
 
@@ -236,6 +248,10 @@ function M.on_close_window(prev_window_id)
 
 	if #data.queue == 0 then
 		app.window.closing_all = nil
+		if app.window.close_all_callback then
+			app.window.close_all_callback()
+			app.window.close_all_callback = nil
+		end
 
 		if data.prev_context then
 			local context = data.prev_context

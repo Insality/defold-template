@@ -35,30 +35,20 @@
 	},
 	"db": {
 		"paths": {
-			"Festivals": "/resources/json/festivals.json",
 			"IapsAndroid": "/resources/json/iaps_android.json",
 			"IapsIos": "/resources/json/iaps_ios.json",
-			"Offers": "/resources/json/offers.json",
 			"Quests": "/resources/json/quests.json",
-			"TiledMapping": "/resources/mapping.json",
 			"TokenConfig": "/resources/json/token_config.json",
 			"TokenGroups": "/resources/json/token_groups.json",
 			"TokenLots": "/resources/json/token_lots.json",
-			"Trucks": "/resources/json/trucks.json",
 			"Labels": "/resources/json/labels.json",
-			"Skills": "/resources/json/skills.json",
-			"Status": "/resources/json/status.json",
 			"Promocodes": "/resources/json/promocodes.json",
 			"Ads": "/resources/json/ads.json"
 		},
 		"verify": {
-			"Offers": "evadata.Offers",
-			"Quests": "evadata.Quests",
 			"TokenConfig": "evadata.TokenConfig",
 			"TokenGroups": "evadata.TokenGroups",
 			"TokenLots": "evadata.Lots",
-			"Trucks": "evadata.Trucks",
-			"Skills": "evadata.Skills",
 			"Promocodes": "evadata.Promocodes",
 			"Ads": "evadata.Ads"
 		}
@@ -76,7 +66,7 @@
 	"game": {
 		"game_started_max_count_stats": 10,
 		"session_time": 600,
-		"time_policy": "local"
+		"time_policy": "local_uptime"
 	},
 	"gdpr": {
 		"is_disabled": false,
@@ -102,8 +92,8 @@
 	"lang": {
 		"default": "en",
 		"lang_paths": {
-			"en": "/resources/locales/en.json",
-			"ru": "/resources/locales/ru.json"
+			"en": "/resources/locale/en.json",
+			"ru": "/resources/locale/ru.json"
 		}
 	},
 	"log": {
@@ -126,12 +116,12 @@
 	},
 	"push": {
 		"is_disabled": false,
-		"snooze_hour_start": 24,
-		"snooze_hour_end": 4,
+		"snooze_hour_start": 23,
+		"snooze_hour_end": 6,
 		"max_per_day": 0,
 		"max_category_per_day": 0,
 		"interval_between_pushes": 7200,
-		"clear_push_in_next_seconds": 5
+		"clear_push_in_next_seconds": 10
 	},
 	"quests": {
 		"is_disabled": false,
@@ -151,7 +141,7 @@
 		"easy_reduce_koef": 3
 	},
 	"saver": {
-		"save_name": "eva.json",
+		"save_name": "game.json",
 		"autosave": 3,
 		"print_save_at_start": false
 	},
@@ -178,7 +168,7 @@
 	},
 	"sound": {
 		"is_disabled": false,
-		"repeat_threshold": 0.05,
+		"repeat_threshold": 0.08,
 		"sound_path": "loader:/sounds#"
 	},
 	"status": {

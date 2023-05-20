@@ -13,6 +13,9 @@ message TokenConfig {
 		string name = 2;
 		int32 min = 3;
 		int32 max = 4 [default = 2147483647];
+		string category = 5;
+		string token_image = 6;
+		string token_name = 7;
 	}
 	map<string, TokenConfigData> token_config = 1;
 }

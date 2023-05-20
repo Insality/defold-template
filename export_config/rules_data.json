@@ -1,0 +1,202 @@
+{
+	"rules": {
+		"token_config": {
+			"lists": ["TokensConfig"],
+			"handlers": [
+				{
+					"type": "add_id_as_field",
+					"config": {
+						"id": "name"
+					}
+				}
+			]
+		},
+
+		"token_order": {
+			"lists": ["TokensConfig"],
+			"handlers": [
+				{
+					"type": "values_list",
+					"config": {
+						"is_key": true
+					}
+				}
+			]
+		},
+
+		"token_groups": {
+			"lists": ["TokenGroups"],
+			"handlers": [
+				{
+					"type": "array_to_map",
+					"config": [
+						{
+							"field": "token1",
+							"keys": ["token_id", "amount"]
+						},
+						{
+							"field": "token2",
+							"keys": ["token_id", "amount"]
+						},
+						{
+							"field": "token3",
+							"keys": ["token_id", "amount"]
+						},
+						{
+							"field": "token4",
+							"keys": ["token_id", "amount"]
+						}
+					]
+				},
+				{
+					"type": "union_data",
+					"config": {
+						"parent_id": "tokens",
+						"is_array": true,
+						"fields": ["token1", "token2", "token3", "token4"]
+					}
+				}
+			]
+		},
+
+		"token_lots": {
+			"lists": ["TokenLots"]
+		},
+
+		"iaps_android": {
+			"lists": ["Iaps"],
+			"handlers": [
+				{
+					"type": "remove_fields",
+					"config": {
+						"fields": ["ident_ios"]
+					}
+				},
+				{
+					"type": "rename_fields",
+					"config": {
+						"keys": {
+							"ident_android": "ident"
+						}
+					}
+				}
+			],
+			"save_param": {
+				"name": "iaps"
+			}
+		},
+
+		"iaps_ios": {
+			"lists": ["Iaps"],
+			"handlers": [
+				{
+					"type": "remove_fields",
+					"config": {
+						"fields": ["ident_android"]
+					}
+				},
+				{
+					"type": "rename_fields",
+					"config": {
+						"keys": {
+							"ident_ios": "ident"
+						}
+					}
+				}
+			],
+			"save_param": {
+				"name": "iaps"
+			}
+		},
+
+		"constants": {
+			"lists": ["Constants"],
+			"handlers": [
+				{
+					"type": "to_map",
+					"config": {
+						"field": "value"
+					}
+				}
+			]
+		},
+
+		"ads": {
+			"lists": ["Ads"]
+		},
+
+		"labels": {
+			"lists": ["Labels"],
+			"handlers": [
+				{
+					"type": "union_data",
+					"config": [
+						{
+							"parent_id": "spec_cond",
+							"is_array": true,
+							"fields": ["spec_cond1", "spec_cond2", "spec_cond3"]
+						},
+						{
+							"parent_id": "token_cond",
+							"is_array": true,
+							"fields": ["token_cond1", "token_cond2", "token_cond3"]
+						}
+					]
+				}
+			]
+		},
+
+		"promocodes": {
+			"lists": ["Promocodes"],
+			"handlers": [
+				{
+					"type": "tokens",
+					"config": {
+						"id": "tokens",
+						"fields": ["tokens"]
+					}
+				}
+			]
+		},
+
+		"quests": {
+			"lists": ["Quests"],
+			"handlers": [
+				{
+					"type": "tokens",
+					"config": [
+						{
+							"id": "required_tokens",
+							"fields": ["required_tokens"]
+						},
+						{
+							"id": "reward",
+							"fields": ["reward"]
+						}
+					]
+				},
+				{
+					"type": "quest_tasks",
+					"config": {
+						"id": "tasks",
+						"fields": ["task1", "task2", "task3"]
+					}
+				},
+				{
+					"type": "ensure_array",
+					"config": {
+						"field": "required_quests"
+					}
+				},
+				{
+					"type": "ensure_string",
+					"config": [{
+						"field": "action_on_start"
+					}, {
+						"field": "action_on_end"
+					}]
+				}
+			]
+		}
+	}
+}

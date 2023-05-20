@@ -189,8 +189,109 @@ nodes {
     w: 1.0
   }
   size {
-    x: 900.0
-    y: 1600.0
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEMPLATE
+  id: "base_window"
+  parent: "root"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  template: "/gui/window_template/base_window.gui"
+  template_node_child: false
+  custom_type: 0
+  enabled: true
+}
+nodes {
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 840.0
+    y: 560.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: "window_general/background_window"
+  id: "base_window/background"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  parent: "base_window"
+  layer: "general"
+  inherit_alpha: true
+  slice9 {
+    x: 84.0
+    y: 84.0
+    z: 84.0
+    w: 84.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  overridden_fields: 4
+  template_node_child: true
+  size_mode: SIZE_MODE_MANUAL
+  custom_type: 0
+  enabled: true
+  visible: true
+}
+nodes {
+  position {
+    x: 0.0
+    y: 280.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 0.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -203,12 +304,12 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "window_general/empty"
-  id: "close_background"
+  id: "base_window/N_Anchor"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_STRETCH
-  parent: "root"
+  pivot: PIVOT_W
+  adjust_mode: ADJUST_MODE_FIT
+  parent: "base_window/background"
   layer: "general"
   inherit_alpha: true
   slice9 {
@@ -221,8 +322,234 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
-  template_node_child: false
+  overridden_fields: 1
+  template_node_child: true
   size_mode: SIZE_MODE_MANUAL
+  custom_type: 0
+  enabled: true
+  visible: false
+}
+nodes {
+  position {
+    x: -335.0
+    y: -70.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.75
+    y: 1.75
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 250.0
+    y: 35.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 0.9411765
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Confirm"
+  font: "game"
+  id: "base_window/text_header"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  parent: "base_window/N_Anchor"
+  layer: "text"
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+  overridden_fields: 8
+  template_node_child: true
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+}
+nodes {
+  position {
+    x: 335.0
+    y: -70.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEMPLATE
+  id: "base_window/button_close"
+  parent: "base_window/N_Anchor"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  template: "/gui/components/button_close.gui"
+  template_node_child: true
+  custom_type: 0
+  enabled: true
+}
+nodes {
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 96.0
+    y: 96.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: "window_general/button_close"
+  id: "base_window/button_close/button"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  parent: "base_window/button_close"
+  layer: "general"
+  inherit_alpha: true
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  template_node_child: true
+  size_mode: SIZE_MODE_MANUAL
+  custom_type: 0
+  enabled: true
+  visible: false
+}
+nodes {
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: "window_general/button_close"
+  id: "base_window/button_close/icon"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  parent: "base_window/button_close/button"
+  layer: "general"
+  inherit_alpha: true
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  template_node_child: true
+  size_mode: SIZE_MODE_AUTO
   custom_type: 0
   enabled: true
   visible: true
@@ -288,346 +615,6 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 895.0
-    y: 566.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/background_window"
-  id: "window_background"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "content"
-  layer: "general"
-  inherit_alpha: true
-  slice9 {
-    x: 84.0
-    y: 84.0
-    z: 84.0
-    w: 84.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
-  custom_type: 0
-  enabled: true
-  visible: true
-}
-nodes {
-  position {
-    x: -335.0
-    y: 203.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 450.0
-    y: 80.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/empty"
-  id: "panel_header"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_W
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "content"
-  layer: "general"
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
-  custom_type: 0
-  enabled: true
-  visible: false
-}
-nodes {
-  position {
-    x: -29.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.75
-    y: 1.75
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 250.0
-    y: 35.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 0.9411765
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "Information"
-  font: "game"
-  id: "text_header"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_W
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  parent: "panel_header"
-  layer: "text"
-  inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 0.0
-  shadow_alpha: 0.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-  custom_type: 0
-  enabled: true
-  visible: true
-}
-nodes {
-  position {
-    x: 696.0
-    y: -2.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_TEMPLATE
-  id: "button_close"
-  parent: "panel_header"
-  layer: ""
-  inherit_alpha: true
-  alpha: 1.0
-  template: "/gui/components/button_close.gui"
-  template_node_child: false
-  custom_type: 0
-  enabled: true
-}
-nodes {
-  position {
-    x: 0.0
-    y: 8.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 96.0
-    y: 96.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/button_close"
-  id: "button_close/button"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "button_close"
-  layer: "general"
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: true
-  size_mode: SIZE_MODE_MANUAL
-  custom_type: 0
-  enabled: true
-  visible: false
-}
-nodes {
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/button_close"
-  id: "button_close/icon"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "button_close/button"
-  layer: "general"
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: true
-  size_mode: SIZE_MODE_AUTO
-  custom_type: 0
-  enabled: true
-  visible: true
-}
-nodes {
-  position {
-    x: 0.0
     y: 25.0
     z: 0.0
     w: 1.0
@@ -645,7 +632,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 620.0
+    x: 550.0
     y: 180.0
     z: 0.0
     w: 1.0
@@ -693,8 +680,8 @@ nodes {
 }
 nodes {
   position {
-    x: -200.0
-    y: -179.0
+    x: -170.0
+    y: -155.0
     z: 0.0
     w: 1.0
   }
@@ -711,7 +698,49 @@ nodes {
     w: 1.0
   }
   size {
-    x: 260.0
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEMPLATE
+  id: "button_agree"
+  parent: "content"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  template: "/gui/components/button_text_green.gui"
+  template_node_child: false
+  custom_type: 0
+  enabled: true
+}
+nodes {
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 279.0
     y: 71.0
     z: 0.0
     w: 1.0
@@ -725,25 +754,25 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "window_general/button_green"
-  id: "button_ok"
+  id: "button_agree/button"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_FIT
-  parent: "content"
-  layer: "general"
+  parent: "button_agree"
+  layer: ""
   inherit_alpha: true
   slice9 {
-    x: 20.0
+    x: 24.0
     y: 0.0
-    z: 20.0
+    z: 24.0
     w: 0.0
   }
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
-  template_node_child: false
+  template_node_child: true
   size_mode: SIZE_MODE_MANUAL
   custom_type: 0
   enabled: true
@@ -763,292 +792,53 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/empty"
-  id: "panel_cost"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "button_ok"
-  layer: "general"
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-  custom_type: 0
-  enabled: true
-  visible: true
-}
-nodes {
-  position {
-    x: 30.0
-    y: 8.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 140.0
-    y: 40.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "2500"
-  font: "game"
-  id: "text_cost_amount"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  parent: "panel_cost"
-  layer: "text"
-  inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 0.0
-  shadow_alpha: 0.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-  custom_type: 0
-  enabled: true
-  visible: true
-}
-nodes {
-  position {
-    x: -119.647
-    y: 8.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.25
-    y: 1.25
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/button_close"
-  id: "icon_gold"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "panel_cost"
-  layer: "general"
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-  custom_type: 0
-  enabled: true
-  visible: true
-}
-nodes {
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/empty"
-  id: "panel_no_cost"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "button_ok"
-  layer: "general"
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-  custom_type: 0
-  enabled: true
-  visible: true
-}
-nodes {
-  position {
-    x: 0.0
-    y: 10.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
+    x: 1.3
+    y: 1.3
     z: 1.0
     w: 1.0
   }
   size {
     x: 180.0
-    y: 40.0
+    y: 50.0
     z: 0.0
     w: 1.0
   }
   color {
+    x: 0.9607843
+    y: 0.92941177
+    z: 0.8039216
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Agree"
+  font: "game"
+  id: "button_agree/text"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  outline {
     x: 1.0
     y: 1.0
     z: 1.0
     w: 1.0
   }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "GOOD!"
-  font: "game"
-  id: "text_ok"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
   shadow {
-    x: 0.0
-    y: 0.2
-    z: 0.2
+    x: 1.0
+    y: 1.0
+    z: 1.0
     w: 1.0
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  parent: "panel_no_cost"
+  parent: "button_agree/button"
   layer: "text"
   inherit_alpha: true
   alpha: 1.0
   outline_alpha: 0.0
   shadow_alpha: 0.0
-  template_node_child: false
+  overridden_fields: 8
+  template_node_child: true
   text_leading: 1.0
   text_tracking: 0.0
   custom_type: 0
@@ -1057,8 +847,8 @@ nodes {
 }
 nodes {
   position {
-    x: 200.0
-    y: -175.0
+    x: 170.0
+    y: -155.0
     z: 0.0
     w: 1.0
   }
@@ -1075,8 +865,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 260.0
-    y: 71.0
+    x: 200.0
+    y: 100.0
     z: 0.0
     w: 1.0
   }
@@ -1086,37 +876,21 @@ nodes {
     z: 1.0
     w: 1.0
   }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: "window_general/button_green"
+  type: TYPE_TEMPLATE
   id: "button_cancel"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
   parent: "content"
-  layer: "general"
+  layer: ""
   inherit_alpha: true
-  slice9 {
-    x: 20.0
-    y: 0.0
-    z: 20.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
   alpha: 1.0
+  template: "/gui/components/button_text_red.gui"
   template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
   custom_type: 0
   enabled: true
-  visible: true
 }
 nodes {
   position {
     x: 0.0
-    y: 10.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -1127,14 +901,14 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 2.0
-    y: 2.0
+    x: 1.0
+    y: 1.0
     z: 1.0
     w: 1.0
   }
   size {
-    x: 180.0
-    y: 40.0
+    x: 279.0
+    y: 71.0
     z: 0.0
     w: 1.0
   }
@@ -1144,35 +918,94 @@ nodes {
     z: 1.0
     w: 1.0
   }
-  type: TYPE_TEXT
+  type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  text: "CANCEL"
-  font: "game"
-  id: "text_cancel"
+  texture: "window_general/button_red"
+  id: "button_cancel/button"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
-  outline {
+  adjust_mode: ADJUST_MODE_FIT
+  parent: "button_cancel"
+  layer: ""
+  inherit_alpha: true
+  slice9 {
+    x: 24.0
+    y: 0.0
+    z: 24.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  template_node_child: true
+  size_mode: SIZE_MODE_MANUAL
+  custom_type: 0
+  enabled: true
+  visible: true
+}
+nodes {
+  position {
     x: 0.0
     y: 0.0
     z: 0.0
     w: 1.0
   }
-  shadow {
+  rotation {
     x: 0.0
-    y: 0.2
-    z: 0.2
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.3
+    y: 1.3
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 180.0
+    y: 50.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.9607843
+    y: 0.92941177
+    z: 0.8039216
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Cancel"
+  font: "game"
+  id: "button_cancel/text"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
     w: 1.0
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  parent: "button_cancel"
+  parent: "button_cancel/button"
   layer: "text"
   inherit_alpha: true
   alpha: 1.0
   outline_alpha: 0.0
   shadow_alpha: 0.0
-  template_node_child: false
+  overridden_fields: 8
+  template_node_child: true
   text_leading: 1.0
   text_tracking: 0.0
   custom_type: 0
@@ -1182,7 +1015,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: -440.0
+    y: -307.0
     z: 0.0
     w: 1.0
   }

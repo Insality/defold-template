@@ -1,0 +1,21 @@
+{
+	"rules": {
+		"locales": {
+			"lists": ["Locales"],
+			"handlers": [
+				{
+					"type": "add_id_by_values",
+					"config": {
+						"ids": ["lang_name"]
+					}
+				}
+			],
+			"save_param": {
+				"separate_fields": [
+					"ru", "en"
+				],
+				"no_beautify": false
+			}
+		}
+	}
+}

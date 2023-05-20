@@ -9,7 +9,7 @@ local druid_const = require("druid.const")
 
 ---@param self scene.menu
 local function on_button_play(self)
-	eva.window.show(const.WINDOW.SCENE_GAME)
+	eva.window.show_scene(const.WINDOW.SCENE_GAME)
 end
 
 

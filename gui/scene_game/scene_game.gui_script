@@ -16,7 +16,7 @@ local function on_button_menu(self)
 				window_confirm_data.text = "Sure exit from game?"
 				window_confirm_data.callbacks = {
 					on_agree = function()
-						eva.window.show(const.WINDOW.SCENE_MENU)
+						eva.window.show_scene(const.WINDOW.SCENE_MENU)
 					end
 				}
 				eva.window.show(const.WINDOW.WINDOW_CONFIRM, window_confirm_data)

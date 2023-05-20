@@ -7,7 +7,6 @@ local app = require("eva.app")
 local luax = require("eva.luax")
 local const = require("eva.const")
 
-local db = require("eva.modules.db")
 local ads = require("eva.modules.ads")
 local iaps = require("eva.modules.iaps")
 local game = require("eva.modules.game")

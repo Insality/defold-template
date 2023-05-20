@@ -10,14 +10,13 @@ local WINDOW_ID = const.WINDOW.WINDOW_CONFIRM
 ---@field data window.confirm_data
 
 ---@class window.confirm_data
----@field cost number Optional
 ---@field callbacks window.confirm_callbacks
 ---@field text string
----@field header string Optional
----@field button_ok_text string Optional
----@field button_cancel_text string Optional
----@field checkbox_text string Optional
----@field is_disable_close boolean
+---@field header string|nil
+---@field button_ok_text string|nil
+---@field button_cancel_text string|nil
+---@field checkbox_text string|nil
+---@field is_disable_close_button boolean
 
 ---@class window.confirm_callbacks
 ---@field on_cancel function
@@ -43,6 +42,7 @@ local function close_window(self, callback)
 end
 
 
+---@param self window.confirm
 local function close_with_agree(self)
 	local callbacks = self.data.callbacks
 	eva.window.disappear(WINDOW_ID, function()
@@ -53,34 +53,9 @@ local function close_with_agree(self)
 end
 
 
-local function close_with_open_shop(self)
-	close_window(self, function()
-		if eva.window.is_open(const.WINDOW.WINDOW_SHOP) then
-			eva.window.msg_post("open_tab", {
-				tab = "tab_gold"
-			})
-		else
-			eva.window.show(const.WINDOW.WINDOW_SHOP, {
-				is_return = true
-				-- open_tab = "tab_gold"
-			})
-		end
-	end)
-end
-
-
 ---@param self window.confirm
 local function on_agree_button(self)
-	if self.data.cost then
-		if eva.wallet.is_enough(const.ITEM.GOLD, self.data.cost) then
-			eva.wallet.pay(const.ITEM.GOLD, self.data.cost)
-			close_with_agree(self)
-		else
-			close_with_open_shop(self)
-		end
-	else
-		close_with_agree(self)
-	end
+	close_with_agree(self)
 end
 
 
@@ -90,15 +65,15 @@ function init(self)
 	self.root = gui.get_node("root")
 	self.data = eva.window.get_data(WINDOW_ID)
 
-	self.druid:new_button("close_background", close_window)
+	self.druid:new_button("window_shadow/root", close_window)
 	self.druid:new_blocker("content")
-	self.druid:new_button("button_close/button", close_window)
-	self.druid:new_button("button_cancel", close_window)
-	self.druid:new_button("button_ok", on_agree_button)
+	self.druid:new_button("base_window/button_close/button", close_window)
+	self.druid:new_button("button_agree/button", on_agree_button)
+	self.druid:new_button("button_cancel/button", close_window)
 
-	self.druid:new_text("text_header", self.data.header or eva.lang.txt("ui_confirm_header"))
-	self.druid:new_text("text_ok", self.data.button_ok_text or eva.lang.txt("ui_confirm_ok"))
-	self.druid:new_text("text_cancel", self.data.button_cancel_text or eva.lang.txt("ui_confirm_cancel"))
+	self.druid:new_text("base_window/text_header", self.data.header or eva.lang.txt("ui_header_confirm"))
+	self.druid:new_text("button_agree/text", self.data.button_ok_text or eva.lang.txt("ui_agree"))
+	self.druid:new_text("button_cancel/text", self.data.button_cancel_text or eva.lang.txt("ui_cancel"))
 	self.druid:new_text("text_info", self.data.text)
 	self.druid:new_text("text_checkbox", self.data.checkbox_text)
 
@@ -107,15 +82,7 @@ function init(self)
 
 	druid_helper.centrate_nodes(4, gui.get_node("text_checkbox"), gui.get_node("checkbox_confirm"))
 
-	if self.data.cost then
-		gui.set_enabled(gui.get_node("panel_no_cost"), false)
-		self.druid:new_text("text_cost_amount",self.data.cost)
-		druid_helper.centrate_nodes(8, gui.get_node("icon_gold"), gui.get_node("text_cost_amount"))
-	else
-		gui.set_enabled(gui.get_node("panel_cost"), false)
-	end
-
-	if self.data.is_disable_close then
+	if self.data.is_disable_close_button then
 		gui.set_enabled(gui.get_node("close_background"), false)
 		gui.set_enabled(gui.get_node("button_close"), false)
 	else
