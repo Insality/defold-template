@@ -18,7 +18,7 @@ local device = require("eva.modules.device")
 local events = require("eva.modules.events")
 local wallet = require("eva.modules.wallet")
 
-local logger = log.get_logger("iaps")
+local logger = log.get_logger("eva.iaps")
 
 local M = {}
 

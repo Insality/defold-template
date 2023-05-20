@@ -92,8 +92,6 @@ end
 
 
 local function connect_to_server(self)
-	app.server:connect(const.SERVER_URL)
-
 	eva.server.connect(function(session)
 		if session then
 			app.profile:set_user_id(session.user_id)
@@ -153,12 +151,11 @@ function on_message(self, message_id, message, sender)
 		end
 
 		app.platform:login(function()
-			--connect_to_server(self)
+			connect_to_server(self)
 			msg.post(".", "start_game")
 		end)
 	end
 	if message_id == const.MSG.START_GAME then
 		eva.window.show_scene(const.WINDOW.SCENE_MENU)
-		--eva.window.show_scene(const.WINDOW.SCENE_GAME)
 	end
 end

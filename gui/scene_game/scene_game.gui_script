@@ -1,4 +1,5 @@
 local eva = require("eva.eva") ---@type eva
+local luax = require("eva.luax")
 local druid = require("druid.druid")
 local const = require("game.const")
 
@@ -31,6 +32,9 @@ function init(self)
 	self.druid = druid.new(self)
 
 	self.button_menu = self.druid:new_button("button_menu/button", on_button_menu)
+
+	local insets = safearea.get_insets()
+	luax.gui.add_y(gui.get_node("NW_Anchor"), -insets.top / 2)
 end
 
 

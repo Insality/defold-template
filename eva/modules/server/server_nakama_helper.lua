@@ -89,10 +89,9 @@ end
 
 local function auth(client)
 	local uid = device.get_device_id()
-	local body = nakama.create_api_account_device(uid)
 	logger:debug("Auth started", { id = uid })
 
-	local session = nakama.authenticate_device(client, body, true, uid)
+	local session = nakama.authenticate_device(client, uid, nil, true, uid)
 	if not session.token then
 		logger:info("Auth failed, no session")
 		return nil
@@ -129,7 +128,7 @@ end
 
 
 local function socket_connect(client, socket, callback)
-	local socket_connected, socket_error = nakama.socket_connect(socket)
+	local socket_connected, socket_error = socket.connect()
 	app.server_data.is_connecting = false
 
 	if socket_connected then
@@ -172,7 +171,7 @@ function M.create_nakama_client(host, port, is_ssl)
 		username = app.settings.server.server_key,
 		password = "",
 		engine = defold,
-		timeout = 10, -- connection timeout in seconds
+		timeout = 20, -- connection timeout in seconds
 	}
 	return nakama.create_client(config)
 end

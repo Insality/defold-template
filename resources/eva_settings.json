@@ -4,7 +4,17 @@
 		"adapter": "unity",
 		"ads_id_ios": "999999999",
 		"ads_id_android": "999999999",
-		"config": "Ads"
+		"config": "Ads",
+		"adapter_unity": {
+			"android": {
+				"rewardedVideo": "Rewarded_Android",
+				"video": "Interstitial_Android"
+			},
+			"ios": {
+				"rewardedVideo": "Rewarded_iOS",
+				"video": "Interstitial_iOS"
+			}
+		}
 	},
 	"cache": {
 		"is_disabled": false
@@ -102,10 +112,11 @@
 		"info_block_length": 12,
 		"message_block": "%message %context \t<%function:%lineno>",
 		"custom_log_levels": {
-			"proto": "FATAL",
-			"db": "FATAL",
-			"device": "FATAL",
-			"input": "FATAL"
+			"eva.proto": "FATAL",
+			"eva.db": "FATAL",
+			"eva.device": "FATAL",
+			"eva.input": "FATAL",
+			"eva.iaps": "FATAL"
 		}
 	},
 	"offers": {
@@ -130,7 +141,7 @@
 		"max_per_day": 0,
 		"max_category_per_day": 0,
 		"interval_between_pushes": 7200,
-		"clear_push_in_next_seconds": 10
+		"clear_push_in_next_seconds": 5
 	},
 	"quests": {
 		"is_disabled": false,
@@ -157,16 +168,16 @@
 	"server": {
 		"is_disabled": false,
 		"game_id": "FFFFF",
-		"server_host": "you.server.adress",
-		"server_port": 443,
+		"server_host": "127.0.0.1",
+		"server_port": 7350,
 		"check_connection_timer": 30,
 		"reconnect_attempts_time": [1, 5, 10, 15, 60],
-		"server_key": "print_your_nakama_server_key_here",
-		"http_key": "put_your_nakama_http_key_here",
-		"encryption_key": "put_your_encryption_key_here",
-		"refresh_encryption_key": "put_your_refresh_encryption_key_here",
-		"debug_log": false,
-		"use_ssl": true
+		"server_key": "SERVER_KER_HERE",
+		"http_key": "HTTP_KEY_HERE",
+		"encryption_key": "ENCRYPTION_KEY_HERE",
+		"refresh_encryption_key": "REFRESH_KEY_HERE",
+		"debug_log": true,
+		"use_ssl": false
 	},
 	"skill": {
 		"is_disabled": false,

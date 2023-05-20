@@ -1,4 +1,5 @@
 local eva = require("eva.eva")
+local eva_const = require("eva.const")
 local druid = require("druid.druid")
 local druid_const = require("druid.const")
 local app = require("eva.app")
@@ -16,6 +17,7 @@ local PAGES = {
 	ITEMS = "items",
 	SAVE = "save",
 	WINDOWS = "windows",
+	EVA = "eva",
 }
 
 local COLORS = {
@@ -156,6 +158,7 @@ PAGES_FUNC[PAGES.MAIN] = function(self)
 	add_cheat_button(self, "Special Actions", function() show_page(self, PAGES.SPECIAL_ACTIONS) end, COLORS.BLUE)
 	add_cheat_button(self, "Save", function() show_page(self, PAGES.SAVE) end, COLORS.BLUE)
 	add_cheat_button(self, "Windows", function() show_page(self, PAGES.WINDOWS) end, COLORS.BLUE)
+	add_cheat_button(self, "Eva", function() show_page(self, PAGES.EVA) end, COLORS.BLUE)
 end
 
 ---@param self window.admin
@@ -214,6 +217,32 @@ PAGES_FUNC[PAGES.WINDOWS] = function(self)
 	end)
 	add_cheat_button(self, "Confirm", function()
 		eva.window.show(const.WINDOW.WINDOW_CONFIRM)
+	end)
+end
+
+
+---@param self window.admin
+PAGES_FUNC[PAGES.EVA] = function(self)
+	add_cheat_button(self, "Push 10 sec", function()
+		eva.push.schedule(10, "Title", "Text")
+	end)
+	add_cheat_button(self, "Vibro: Light", function()
+		eva.vibrate.vibrate(eva_const.VIBRATE.LIGHT)
+	end)
+	add_cheat_button(self, "Vibro: Medium", function()
+		eva.vibrate.vibrate(eva_const.VIBRATE.MEDIUM)
+	end)
+	add_cheat_button(self, "Vibro: Heavy", function()
+		eva.vibrate.vibrate(eva_const.VIBRATE.HEAVY)
+	end)
+	add_cheat_button(self, "Open store", function()
+		eva.game.open_store_page()
+	end)
+	add_cheat_button(self, "Rate game", function()
+		eva.rate.open_rate()
+	end)
+	add_cheat_button(self, "Share", function()
+		eva.share.screen("Debug share text")
 	end)
 end
 

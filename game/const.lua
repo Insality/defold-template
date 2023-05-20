@@ -1,5 +1,10 @@
 local M = {}
 
+-- Server compatability
+if not hash then
+    hash = function(x) return x end
+end
+
 M.MAX_GUI_UPSCALE = 1.25
 M.SCENE_TRANSITION_TIME = 0.18
 

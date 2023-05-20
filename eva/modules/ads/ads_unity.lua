@@ -34,8 +34,12 @@ end
 local function check_load()
 	for placement_id, status in pairs(Ads._ready_map) do
 		if status == STATE_NOT_LOADED then
-			unityads.load(placement_id)
-			Ads._ready_map[placement_id] = STATE_LOADING
+			if unityads then
+				unityads.load(placement_id)
+				Ads._ready_map[placement_id] = STATE_LOADING
+			else
+				Ads._ready_map[placement_id] = STATE_LOADED
+			end
 		end
 	end
 end

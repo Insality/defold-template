@@ -1,4 +1,6 @@
 local eva = require("eva.eva") ---@type eva
+local app = require("eva.app")
+local luax = require("eva.luax")
 local const = require("game.const")
 local druid = require("druid.druid")
 local druid_const = require("druid.const")
@@ -28,6 +30,20 @@ end
 
 
 ---@param self scene.menu
+local function on_connection_problem(self)
+	eva.window.show(const.WINDOW.WINDOW_INFO, {
+		text = eva.lang.txt("ui_try_to_connect_info")
+	})
+end
+
+
+---@param self scene.menu
+local function on_connection_status_change(self)
+	gui.set_enabled(self._node_wifi, not eva.server.is_connected())
+end
+
+
+---@param self scene.menu
 function init(self)
 	self.druid = druid.new(self)
 
@@ -36,6 +52,18 @@ function init(self)
 	self.button_admin = self.druid:new_button("button_admin/button", on_button_admin)
 	self.druid:new_layout(gui.get_node("background"), druid_const.LAYOUT_MODE.ZOOM_MAX)
 		:fit_into_window()
+
+	self._node_wifi = gui.get_node("icon_wifi")
+	gui.animate(self._node_wifi, luax.gui.PROP_ALPHA, 0, gui.EASING_OUTSINE, 1, 0, nil, gui.PLAYBACK_LOOP_PINGPONG)
+	self.druid:new_button(self._node_wifi, on_connection_problem)
+
+	on_connection_status_change(self)
+	app.server_events.connect_status:subscribe(on_connection_status_change, self)
+	app.platform.on_new_payload:subscribe(on_connection_status_change, self)
+
+	local insets = safearea.get_insets()
+	luax.gui.add_y(gui.get_node("NE_Anchor"), -insets.top / 2)
+	luax.gui.add_y(gui.get_node("NW_Anchor"), -insets.top / 2)
 end
 
 

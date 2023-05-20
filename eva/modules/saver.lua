@@ -20,7 +20,7 @@ local proto = require("eva.modules.proto")
 local events = require("eva.modules.events")
 local migrations = require("eva.modules.migrations")
 
-local logger = log.get_logger("saver")
+local logger = log.get_logger("eva.saver")
 
 local M = {}
 

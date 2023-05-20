@@ -1,5 +1,5 @@
 [project]
-title = Template
+title = Game Template
 custom_resources = /resources
 bundle_resources = /bundle
 version = 0.0.1
@@ -22,13 +22,13 @@ dependencies#12 = https://github.com/heroiclabs/nakama-defold/archive/refs/tags/
 dependencies#13 = https://github.com/GameAnalytics/GA-SDK-DEFOLD/archive/refs/tags/4.2.6.zip
 dependencies#14 = https://github.com/GameAnalytics/defold-openssl/archive/refs/tags/1.0.0.zip
 dependencies#15 = https://github.com/britzl/defold-clipboard/archive/refs/tags/1.3.0.zip
-dependencies#16 = https://github.com/insalitygames/vibrate/archive/master.zip
-dependencies#17 = https://github.com/insalitygames/def_taptic_engine/archive/master.zip
-dependencies#18 = https://github.com/defold/extension-push/archive/refs/tags/4.0.0.zip
-dependencies#19 = https://github.com/defold/extension-iac/archive/refs/tags/1.2.4.zip
-dependencies#20 = https://github.com/defold/extension-siwa/archive/refs/tags/1.1.2.zip
-dependencies#21 = https://github.com/defold/extension-safearea/archive/refs/tags/1.3.1.zip
-dependencies#22 = https://github.com/britzl/defold-sharing/archive/refs/tags/4.3.0.zip
+dependencies#16 = https://github.com/defold/extension-push/archive/refs/tags/4.0.0.zip
+dependencies#17 = https://github.com/defold/extension-iac/archive/refs/tags/1.2.4.zip
+dependencies#18 = https://github.com/defold/extension-siwa/archive/refs/tags/1.1.2.zip
+dependencies#19 = https://github.com/britzl/defold-sharing/archive/refs/tags/4.3.0.zip
+dependencies#20 = https://github.com/defold/extension-iap/archive/refs/tags/5.0.1.zip
+dependencies#21 = https://github.com/britzl/defold-screenshot/archive/refs/tags/1.9.1.zip
+dependencies#22 = https://github.com/defold/extension-crypt/archive/refs/tags/1.0.2.zip
 
 [bootstrap]
 main_collection = /assets/scenes/loader.collectionc
@@ -69,12 +69,14 @@ launch_image_1125x2436 = /bundle/launch_images/ios_launch_1125x2436.png
 launch_image_2436x1125 = /bundle/launch_images/ios_launch_2436x1125.png
 launch_image_1668x2224 = /bundle/launch_images/ios_launch_1668x2224.png
 launch_image_2224x1668 = /bundle/launch_images/ios_launch_2224x1668.png
-bundle_identifier = free.insality.template
+bundle_identifier = free.insality.gametemplate
 default_language = en
 localizations = en.ru
+bundle_name =
+bundle_version = 1
 
 [osx]
-bundle_identifier = free.insality.template
+bundle_identifier = free.insality.gametemplate
 localizations = en,ru
 
 [android]
@@ -86,7 +88,7 @@ app_icon_144x144 = /bundle/icons/icon_144.png
 app_icon_192x192 = /bundle/icons/icon_192.png
 input_method = HiddenInputField
 immersive_mode = 1
-package = free.insality.template
+package = free.insality.gametemplate
 
 [script]
 shared_state = 1
@@ -158,3 +160,20 @@ max_count = 0
 [label]
 max_count = 32
 
+[gameanalytics]
+game_key_html5 = asdasdasd
+secret_key_html5 = asdasdasd
+game_key_osx = asdasdasd
+secret_key_osx = asdasdasd
+game_key_android = asdasdasd
+secret_key_android = asdasdasd
+game_key_ios = asdasdasd
+secret_key_ios = asdasdasd
+build_html5 = 0.1.0
+build_osx = 0.1.0
+build_android = 0.1.0
+build_ios = 0.1.0
+use_custom_id = 1
+enable_info_log = 0
+enable_verbose_log = 0
+auto_detect_app_version = 1

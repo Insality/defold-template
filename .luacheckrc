@@ -72,4 +72,5 @@ globals = {
   "gameanalytics",
   "lua_script_instance",
   "review",
+  "safearea",
 }

@@ -9,5 +9,10 @@ Thumbs.db
 .cproject
 builtins
 deployer_version_settings.txt
+provisions
+dist
+/server/.cookie
+manifest.private.der
+manifest.public.der
 
 .cache_deployer

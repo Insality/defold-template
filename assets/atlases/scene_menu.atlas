@@ -2,6 +2,10 @@ images {
   image: "/assets/images/scene_menu/background_menu.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/assets/images/scene_menu/icon_no_wifi.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 0
 extrude_borders: 2
 inner_padding: 0
