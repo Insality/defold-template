@@ -18,9 +18,14 @@ local device = require("eva.modules.device")
 local events = require("eva.modules.events")
 local wallet = require("eva.modules.wallet")
 
-local logger = log.get_logger("eva.iaps")
+local logger = log.get_logger("iaps")
 
 local M = {}
+
+M.ADAPTERS = {
+	["mobile"] = "eva.modules.iaps.iaps_mobile",
+	["yandex"] = "eva.modules.iaps.iaps_yandex"
+}
 
 
 local function get_iaps_config()
@@ -159,11 +164,12 @@ local function iap_listener(self, transaction, error)
 			consume(iap_id, transaction)
 		end
 	else
+		local ident = transaction and transaction.ident or "n/a"
+		local iap_id = get_id_by_ident(ident)
 		if error.reason == const.IAP.REASON.CANCELED then
-			local ident = transaction and transaction.ident or "n/a"
-			local iap_id = get_id_by_ident(ident)
 			events.event(const.EVENT.IAP_CANCEL, { ident = ident, iap_id = iap_id })
 		else
+			events.event(const.EVENT.IAP_ERROR, { ident = ident, iap_id = iap_id })
 			logger:warn("Error while IAP processing", transaction)
 		end
 	end
@@ -192,6 +198,13 @@ function M.buy(iap_id)
 	end
 
 	return true
+end
+
+
+--- Restore the iap products
+-- @function eva.iaps.restore
+function M.restore()
+
 end
 
 

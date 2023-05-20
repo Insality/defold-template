@@ -1,0 +1,18 @@
+{
+    "ads": {
+        "adapter": "unity"
+    },
+    "log": {
+        "level": "WARN"
+    },
+    "rate": {
+        "adapter": "mobile"
+    },
+    "server": {
+        "server_host": "some_url",
+        "server_port": 443,
+        "debug_log": false,
+        "use_ssl": true
+    }
+}
+

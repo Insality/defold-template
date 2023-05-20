@@ -77,6 +77,20 @@ require("eva.modules.ads.ads_unity")
  require("nakama.session")
  require("nakama.util.log")
 
+ -- Uncomment if eva.rate desktop stub is used
+require("eva.modules.rate.rate_stub")
+-- Uncomment if eva.rate mobile is used
+require("eva.modules.rate.rate_mobile")
+-- Uncomment if eva.rate yandex is used
+--require("eva.modules.rate.rate_yandex")
+
+-- Uncomment if stub iap provider is used
+-- require("eva.modules.iaps.iaps_stub")
+-- Uncomment if mobile iap provider is used (Android/iOS)
+require("eva.modules.iaps.iaps_mobile")
+-- Uncomment if yandex iap provider is used
+--require("eva.modules.iaps.iaps_yandex")
+
 
 --- @type eva
 local Eva = {}

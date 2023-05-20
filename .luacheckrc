@@ -71,4 +71,5 @@ globals = {
   "clipboard",
   "gameanalytics",
   "lua_script_instance",
+  "review",
 }
