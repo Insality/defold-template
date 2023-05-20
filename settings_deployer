@@ -1,3 +1,16 @@
 #!/bin/bash
 # lhttps://github.com/Insality/defold-deployer
-use_latest_bob=true
+use_latest_bob=false
+
+bob_sha="145:3dbbf1dbebd3a8146f6a917d101882a61f56afdc"
+
+# Set patch (last value after dot) game version value as total git commits count (1.2.0 -> 1.2.{commits_count})
+# You allow to get SHA commit from version via: git rev-list --all --reverse | sed -n {N}p
+enable_incremental_version=true
+
+# Use git commits count as android.version_code on build
+enable_incremental_android_version_code=true
+
+# Local resource cache folder for deployer script. This folder will be added to gitignore if exists
+resource_cache_local=".cache_deployer"
+

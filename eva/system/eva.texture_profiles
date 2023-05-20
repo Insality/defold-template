@@ -1,0 +1,62 @@
+path_settings {
+  path: "**"
+  profile: "RGBA_32bit"
+}
+profiles {
+  name: "RGBA_32bit"
+  platforms {
+    os: OS_ID_WINDOWS
+    formats {
+      format: TEXTURE_FORMAT_RGBA
+      compression_level: BEST
+      compression_type: COMPRESSION_TYPE_DEFAULT
+    }
+    mipmaps: false
+    max_texture_size: 0
+    premultiply_alpha: true
+  }
+  platforms {
+    os: OS_ID_IOS
+    formats {
+      format: TEXTURE_FORMAT_RGBA
+      compression_level: BEST
+      compression_type: COMPRESSION_TYPE_DEFAULT
+    }
+    mipmaps: false
+    max_texture_size: 0
+    premultiply_alpha: true
+  }
+  platforms {
+    os: OS_ID_ANDROID
+    formats {
+      format: TEXTURE_FORMAT_RGBA
+      compression_level: BEST
+      compression_type: COMPRESSION_TYPE_DEFAULT
+    }
+    mipmaps: false
+    max_texture_size: 0
+    premultiply_alpha: true
+  }
+  platforms {
+    os: OS_ID_WEB
+    formats {
+      format: TEXTURE_FORMAT_RGBA
+      compression_level: BEST
+      compression_type: COMPRESSION_TYPE_DEFAULT
+    }
+    mipmaps: false
+    max_texture_size: 0
+    premultiply_alpha: true
+  }
+  platforms {
+    os: OS_ID_OSX
+    formats {
+      format: TEXTURE_FORMAT_RGBA
+      compression_level: BEST
+      compression_type: COMPRESSION_TYPE_DEFAULT
+    }
+    mipmaps: false
+    max_texture_size: 0
+    premultiply_alpha: true
+  }
+}

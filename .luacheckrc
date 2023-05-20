@@ -49,7 +49,6 @@ globals = {
   "window",
   "unityads",
   "defos",
-  "cjson",
   "instantapp",
   "describe",
   "before",
@@ -65,5 +64,9 @@ globals = {
   "pb",
   "editor",
   "vibrate",
-  "taptic_engine"
+  "taptic_engine",
+  "html5",
+  "share",
+  "gpgs",
+  "clipboard",
 }

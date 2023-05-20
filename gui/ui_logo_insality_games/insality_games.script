@@ -1,0 +1,23 @@
+local const = require("game.const")
+
+go.property("notify_url", msg.url())
+
+
+local function finish(self)
+	go.delete(".")
+	msg.post(self.notify_url, const.MSG.LOADER_LOGO_SHOWED)
+end
+
+
+function init(self)
+	if sys.get_engine_info().is_debug then
+		finish(self)
+	end
+end
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == const.MSG.DESTROY_GO then
+		finish(self)
+	end
+end

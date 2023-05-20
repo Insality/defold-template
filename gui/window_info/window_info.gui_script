@@ -1,0 +1,106 @@
+local druid = require("druid.druid") ---@type druid
+
+local eva = require("eva.eva") ---@type eva
+local const = require("game.const")
+
+local WINDOW_ID = const.WINDOW.WINDOW_INFO
+
+---@class window.info
+---@field data window.info_data
+
+---@class window.info_data
+---@field text string
+---@field header string Optional
+---@field only_button_close boolean
+---@field button_text string Optional
+---@field extra_size number Optional
+
+
+---@param self window.info
+local function close_window(self)
+	local callbacks = self.data.callbacks
+	eva.window.disappear(WINDOW_ID, function()
+		if callbacks and callbacks.on_close then
+			callbacks.on_close()
+		end
+	end)
+end
+
+
+local function change_y(node_name, delta)
+	local node = gui.get_node(node_name)
+	local pos = gui.get_position(node)
+	pos.y = pos.y + delta
+	gui.set_position(node, pos)
+end
+
+
+local function change_size_y(node_name, delta)
+	local node = gui.get_node(node_name)
+	local pos = gui.get_size(node)
+	pos.y = pos.y + delta
+	gui.set_size(node, pos)
+end
+
+
+---@param self window.info
+function init(self)
+	self.druid = druid.new(self)
+	self.root = gui.get_node("root")
+	self.data = eva.window.get_data(WINDOW_ID)
+
+	if self.data.extra_size then
+		local half = self.data.extra_size / 2
+		change_y("window_header", half)
+		change_y("button_close", half)
+		change_y("button_ok", -half)
+		change_size_y("window_background", half * 2)
+
+		local text_node = gui.get_node("text_info")
+		local size = gui.get_size(text_node)
+		local scale = gui.get_scale(text_node)
+		size.y = size.y + half / scale.x
+		gui.set_size(text_node, size)
+	end
+
+	if self.data.only_button_close then
+		self.druid:new_button("close_background", close_window)
+		self.druid:new_back_handler(close_window)
+		gui.set_enabled(gui.get_node("button_close"), false)
+	end
+
+	self.druid:new_blocker("content")
+	self.druid:new_button("button_close", close_window)
+	self.druid:new_button("button_ok", close_window)
+
+	self.druid:new_text("text_header", self.data.header or eva.lang.txt("ui_info_header"))
+	self.druid:new_text("text_ok", self.data.button_text or eva.lang.txt("ui_info_ok"))
+	self.druid:new_text("text_info", self.data.text)
+
+	eva.window.appear(WINDOW_ID)
+end
+
+
+---@param self window.info
+function final(self)
+	self.druid:final()
+end
+
+
+---@param self window.info
+function update(self, dt)
+	self.druid:update(dt)
+end
+
+
+---@param self window.info
+function on_message(self, message_id, message, sender)
+	eva.window.on_message(WINDOW_ID, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+end
+
+
+---@param self window.info
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end

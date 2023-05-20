@@ -1,25 +1,27 @@
 {
 	"ads": {
-		"is_disabled": true,
+		"is_disabled": false,
+		"adapter": "unity",
 		"ads_id_ios": "999999999",
-		"ads_id_android": "999999999"
+		"ads_id_android": "999999999",
+		"config": "Ads"
 	},
 	"cache": {
-		"is_disabled": true
+		"is_disabled": false
 	},
 	"camera": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"input_priority": 3,
 		"move_lerp_speed": 0.87,
 		"move_border_lerp_speed": 0.09,
-		"zoom_lerp_speed": 0.6,
+		"zoom_lerp_speed": 0.7,
 		"zoom_border_lerp_speed": 0.06,
 		"friction": 0.88,
 		"friction_hold": 0.68,
 		"inertion_koef": 0.37
 	},
 	"daily": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"interval": 43200,
 		"wait_time": 86400,
 		"reward": [
@@ -33,19 +35,39 @@
 	},
 	"db": {
 		"paths": {
+			"Festivals": "/resources/json/festivals.json",
 			"IapsAndroid": "/resources/json/iaps_android.json",
 			"IapsIos": "/resources/json/iaps_ios.json",
+			"Offers": "/resources/json/offers.json",
+			"Quests": "/resources/json/quests.json",
+			"TiledMapping": "/resources/mapping.json",
 			"TokenConfig": "/resources/json/token_config.json",
 			"TokenGroups": "/resources/json/token_groups.json",
 			"TokenLots": "/resources/json/token_lots.json",
-			"Labels": "/resources/json/labels.json"
+			"Trucks": "/resources/json/trucks.json",
+			"Labels": "/resources/json/labels.json",
+			"Skills": "/resources/json/skills.json",
+			"Status": "/resources/json/status.json",
+			"Promocodes": "/resources/json/promocodes.json",
+			"Ads": "/resources/json/ads.json"
+		},
+		"verify": {
+			"Offers": "evadata.Offers",
+			"Quests": "evadata.Quests",
+			"TokenConfig": "evadata.TokenConfig",
+			"TokenGroups": "evadata.TokenGroups",
+			"TokenLots": "evadata.Lots",
+			"Trucks": "evadata.Trucks",
+			"Skills": "evadata.Skills",
+			"Promocodes": "evadata.Promocodes",
+			"Ads": "evadata.Ads"
 		}
 	},
 	"debug": {
 		"input_priority": 4
 	},
 	"errors": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"error_server_url": ""
 	},
 	"eva": {
@@ -58,17 +80,20 @@
 	},
 	"gdpr": {
 		"is_disabled": false,
-		"policy_url": "https://d.insality.com/privacypolicy.htm"
+		"policy_url": ""
 	},
 	"iaps": {
+		"is_disabled": false,
 		"config_android": "IapsAndroid",
 		"config_ios": "IapsIos"
 	},
 	"input": {
+		"is_disabled": false,
 		"multi_touch": true,
 		"long_touch_threshold": 0.65,
 		"drag_deadzone": 10,
-		"zoom_speed": 2.5
+		"zoom_speed": 2.5,
+		"is_gestures_enabled": false
 	},
 	"labels": {
 		"is_disabled": false,
@@ -77,16 +102,15 @@
 	"lang": {
 		"default": "en",
 		"lang_paths": {
-			"en": "/resources/locale/en.json",
-			"ru": "/resources/locale/ru.json"
+			"en": "/resources/locales/en.json",
+			"ru": "/resources/locales/ru.json"
 		}
 	},
 	"log": {
-		"format": "%levelshort[%logger]<%function:%lineno>: %message %context",
-		"level": "DEBUG"
+		"format": "%levelshort[%logger]<%function:%lineno>: %message %context"
 	},
 	"offers": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"config": "Offers"
 	},
 	"proto": {
@@ -94,12 +118,14 @@
 		"proto_paths": {
 			"/resources": [
 				"eva.proto",
-				"evadata.proto"
+				"evadata.proto",
+				"game.proto",
+				"gamedata.proto"
 			]
 		}
 	},
 	"push": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"snooze_hour_start": 24,
 		"snooze_hour_end": 4,
 		"max_per_day": 0,
@@ -108,14 +134,15 @@
 		"clear_push_in_next_seconds": 5
 	},
 	"quests": {
-		"is_disabled": true
+		"is_disabled": false,
+		"config": "Quests"
 	},
 	"rate": {
 		"is_disabled": false,
 		"max_promt_count": 4
 	},
 	"rating": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"min": 100,
 		"max": 8000,
 		"rating_diff": 60,
@@ -125,31 +152,41 @@
 	},
 	"saver": {
 		"save_name": "eva.json",
-		"autosave": 2,
+		"autosave": 3,
 		"print_save_at_start": false
 	},
 	"server": {
 		"is_disabled": true,
-		"game_id": "FFFFF"
+		"game_id": "FFFFF",
+		"server_host": "you.server.adress",
+		"server_port": 443,
+		"check_connection_timer": 30,
+		"reconnect_attempts_time": [1, 5, 10, 15, 60],
+		"server_key": "print_your_nakama_server_key_here",
+		"http_key": "put_your_nakama_http_key_here",
+		"encryption_key": "put_your_encryption_key_here",
+		"refresh_encryption_key": "put_your_refresh_encryption_key_here",
+		"debug_log": false,
+		"use_ssl": true
 	},
 	"skill": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"config": "Skills"
 	},
 	"social": {
-		"is_disabled": true
+		"is_disabled": false
 	},
 	"sound": {
 		"is_disabled": false,
 		"repeat_threshold": 0.05,
-		"sound_path": "main:/sounds#"
+		"sound_path": "loader:/sounds#"
 	},
 	"status": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"config": "Status"
 	},
 	"tiled": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"mapping_config": "TiledMapping",
 		"z_layer_objects_default": 3,
 		"z_layer_tiles_default": 0
@@ -160,8 +197,11 @@
 		"config_token_groups": "TokenGroups",
 		"config_token_config": "TokenConfig"
 	},
+	"festivals": {
+		"is_disabled": false
+	},
 	"trucks": {
-		"is_disabled": true,
+		"is_disabled": false,
 		"min_return_timer_on_long_return": 0
 	}
 }

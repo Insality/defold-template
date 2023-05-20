@@ -1,0 +1,132 @@
+local eva = require("eva.eva")
+local druid = require("druid.druid")
+local eva_const = require("eva.const")
+
+local const = require("game.const")
+
+local WINDOW_ID = const.WINDOW.WINDOW_SETTINGS
+
+local BUTTON_ENABLED = "button_green"
+local BUTTON_DISABLED = "button_yellow"
+
+---@class window.settings
+
+---@param self window.settings
+---@param callback function
+local function close_window(self, callback)
+	local callbacks = self.data.callbacks
+	eva.window.disappear(WINDOW_ID, function()
+		if callbacks and callbacks.on_close then
+			callbacks.on_close()
+		end
+		if callback then
+			callback()
+		end
+	end)
+end
+
+
+---@param self window.settings
+local function refresh_icons(self)
+	local is_sound_enabled = eva.sound.is_sound_enabled()
+	gui.play_flipbook(gui.get_node("icon_sound"), is_sound_enabled and "i_sound_on" or "i_sound_off")
+	gui.play_flipbook(gui.get_node("button_sound/button"), is_sound_enabled and BUTTON_ENABLED or BUTTON_DISABLED)
+	self._text_sound_state:translate(is_sound_enabled and "ui_on" or "ui_off")
+
+	local is_music_enabled = eva.sound.is_music_enabled()
+	gui.play_flipbook(gui.get_node("icon_music"), is_music_enabled and "i_music_on" or "i_music_off")
+	gui.play_flipbook(gui.get_node("button_music/button"), is_music_enabled and BUTTON_ENABLED or BUTTON_DISABLED)
+	self._text_music_state:translate(is_music_enabled and "ui_on" or "ui_off")
+
+	local is_vibration_enabled = eva.vibrate.is_enabled()
+	gui.play_flipbook(gui.get_node("icon_vibration"), is_vibration_enabled and "i_vibro_on" or "i_vibro_off")
+	gui.play_flipbook(gui.get_node("button_vibration/button"), is_vibration_enabled and BUTTON_ENABLED or BUTTON_DISABLED)
+	self._text_vibration_state:translate(is_vibration_enabled and "ui_on" or "ui_off")
+
+	local is_push_enabled = eva.push.is_enabled()
+	gui.play_flipbook(gui.get_node("icon_notifications"), is_push_enabled and "i_notif_on" or "i_notif_off")
+	gui.play_flipbook(gui.get_node("button_notifications/button"), is_push_enabled and BUTTON_ENABLED or BUTTON_DISABLED)
+	self._text_notifications_state:translate(is_push_enabled and "ui_on" or "ui_off")
+end
+
+
+---@param self window.settings
+function init(self)
+	self.druid = druid.new(self)
+	self.root = gui.get_node("root")
+	self.data = eva.window.get_data(WINDOW_ID)
+
+	self.druid:new_button("window_shadow/root", close_window)
+	self.druid:new_back_handler(close_window)
+	self.druid:new_blocker("window_background")
+	self.druid:new_button("button_close", close_window)
+
+	self.druid:new_lang_text("text_sound", "ui_sound")
+	self.druid:new_lang_text("text_music", "ui_music")
+	self.druid:new_lang_text("text_vibration", "ui_vibro")
+	self.druid:new_lang_text("text_header", "ui_settings_header")
+	self.druid:new_lang_text("button_language/text", "ui_language")
+	self.druid:new_lang_text("text_notifications", "ui_notifications")
+	self._text_sound_state = self.druid:new_lang_text("button_sound/text", "ui_on")
+	self._text_music_state = self.druid:new_lang_text("button_music/text", "ui_on")
+	self._text_vibration_state = self.druid:new_lang_text("button_vibration/text", "ui_on")
+	self._text_notifications_state = self.druid:new_lang_text("button_notifications/text", "ui_on")
+
+	self.slider_music = self.druid:new_button("button_music/button", function()
+		local is_enabled = eva.sound.is_music_enabled()
+		eva.sound.set_music_gain(is_enabled and 0 or 1)
+		refresh_icons(self)
+	end)
+	self.slider_sound = self.druid:new_button("button_sound/button", function()
+		local is_enabled = eva.sound.is_sound_enabled()
+		eva.sound.set_sound_gain(is_enabled and 0 or 1)
+		refresh_icons(self)
+	end)
+	self.slider_vibration = self.druid:new_button("button_vibration/button", function()
+		local is_enabled = eva.vibrate.is_enabled()
+		eva.vibrate.set_enabled(not is_enabled)
+		eva.vibrate.vibrate(eva_const.VIBRATE.LIGHT)
+		refresh_icons(self)
+	end)
+	self.slider_notification = self.druid:new_button("button_notifications/button", function()
+		local is_enabled = eva.push.is_enabled()
+		eva.push.set_enabled(not is_enabled)
+		refresh_icons(self)
+	end)
+	refresh_icons(self)
+
+	self.druid:new_layout("node_upscale_limit"):set_max_gui_upscale(const.MAX_GUI_UPSCALE)
+
+	self.druid:new_button("button_exit/button", function()
+		eva.saver.delete()
+		eva.game.reboot()
+	end)
+	self.druid:new_button("button_language/button", eva.lang.set_next_lang)
+
+	eva.window.appear(WINDOW_ID)
+end
+
+
+---@param self window.settings
+function final(self)
+	self.druid:final()
+end
+
+
+---@param self window.settings
+function update(self, dt)
+	self.druid:update(dt)
+end
+
+
+---@param self window.settings
+function on_message(self, message_id, message, sender)
+	eva.window.on_message(WINDOW_ID, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+end
+
+
+---@param self window.settings
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end

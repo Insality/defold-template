@@ -1,0 +1,43 @@
+local eva = require("eva.eva") ---@type eva
+local druid = require("druid.druid")
+local const = require("game.const")
+
+---@class scene.game
+
+
+---@param self scene.game
+local function on_button_menu(self)
+	eva.window.show(const.WINDOW.WINDOW_SETTINGS)
+end
+
+
+---@param self scene.game
+function init(self)
+	self.druid = druid.new(self)
+
+	self.button_menu = self.druid:new_button("button_menu/button", on_button_menu)
+end
+
+
+---@param self scene.game
+function final(self)
+	self.druid:final()
+end
+
+
+---@param self scene.game
+function update(self, dt)
+	self.druid:update(dt)
+end
+
+
+---@param self scene.game
+function on_message(self, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+end
+
+
+---@param self scene.game
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end

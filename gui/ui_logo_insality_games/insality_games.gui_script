@@ -1,0 +1,47 @@
+local animation = require("gui.ui_logo_insality_games.animation_insality_games")
+
+local function hide_scene(self)
+	if self.is_hiding then
+		return
+	end
+
+	self.is_hiding = true
+	local root = gui.get_node("root")
+	gui.animate(root, "color.w", 0, gui.EASING_OUTSINE, 0.25, 0, function()
+		msg.post(".", "destroy_go")
+	end)
+end
+
+
+function init(self)
+	gui.set_render_order(15)
+
+	self.animation = animation.create(nil, {
+		animation_id = "appear",
+	}, true)
+	self._timer_id = timer.delay(2.75, false, hide_scene)
+
+	msg.post(".", "late_acquire_focus")
+end
+
+
+function final(self)
+	msg.post(".", "release_input_focus")
+end
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("late_acquire_focus") then
+		animation.play(self.animation)
+		msg.post(".", "acquire_input_focus")
+	end
+end
+
+
+function on_input(self, action_id, action)
+	if not self.is_hiding and action and action.released then
+		hide_scene(self)
+	end
+
+	return true
+end

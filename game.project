@@ -1,15 +1,40 @@
 [project]
-title = defold-template
-dependencies = https://github.com/insalitygames/monarch/archive/master.zip,https://github.com/insalitygames/rendercam/archive/master.zip,https://github.com/insalitygames/defold-protobuf/archive/master.zip,https://github.com/insalitygames/defold-cjson/archive/master.zip,https://github.com/insalitygames/set_screen_position/archive/master.zip,https://github.com/insalitygames/deftest/archive/master.zip,https://github.com/insalitygames/defreview/archive/master.zip,https://github.com/insalitygames/DefVideoAds/archive/master.zip,https://github.com/insalitygames/defold-input/archive/master.zip,https://github.com/Insality/defold-eva/archive/master.zip,https://github.com/insalitygames/LuaScriptInstance/archive/master.zip
+title = Template
 custom_resources = /resources
 bundle_resources = /bundle
-version = 1.0.0
+version = 0.0.1
+publisher = Insality Games
+developer = Insality
+platform_name = stub
+dependencies#0 = https://github.com/insalitygames/monarch/archive/master.zip
+dependencies#1 = https://github.com/insalitygames/rendercam/archive/master.zip
+dependencies#2 = https://github.com/insalitygames/defold-protobuf/archive/master.zip
+dependencies#3 = https://github.com/britzl/defold-input/archive/refs/tags/4.6.0.zip
+dependencies#4 = https://github.com/insalitygames/LuaScriptInstance/archive/master.zip
+dependencies#5 = https://github.com/insalitygames/uptime/archive/master.zip
+dependencies#6 = https://github.com/insalitygames/def_taptic_engine/archive/master.zip
+dependencies#7 = https://github.com/insalitygames/vibrate/archive/master.zip
+dependencies#8 = https://github.com/defold/extension-safearea/archive/refs/tags/1.3.1.zip
+dependencies#9 = https://github.com/Insality/druid/archive/refs/tags/0.10.3.zip
+dependencies#10 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.0.zip
+dependencies#11 = https://github.com/defold/extension-websocket/archive/refs/tags/3.1.0.zip
+dependencies#12 = https://github.com/heroiclabs/nakama-defold/archive/refs/tags/3.1.0.zip
+dependencies#13 = https://github.com/GameAnalytics/GA-SDK-DEFOLD/archive/refs/tags/4.2.6.zip
+dependencies#14 = https://github.com/GameAnalytics/defold-openssl/archive/refs/tags/1.0.0.zip
+dependencies#15 = https://github.com/britzl/defold-clipboard/archive/refs/tags/1.3.0.zip
+dependencies#16 = https://github.com/insalitygames/vibrate/archive/master.zip
+dependencies#17 = https://github.com/insalitygames/def_taptic_engine/archive/master.zip
+dependencies#18 = https://github.com/defold/extension-push/archive/refs/tags/4.0.0.zip
+dependencies#19 = https://github.com/defold/extension-iac/archive/refs/tags/1.2.4.zip
+dependencies#20 = https://github.com/defold/extension-siwa/archive/refs/tags/1.1.2.zip
+dependencies#21 = https://github.com/defold/extension-safearea/archive/refs/tags/1.3.1.zip
+dependencies#22 = https://github.com/britzl/defold-sharing/archive/refs/tags/4.3.0.zip
 
 [bootstrap]
 main_collection = /assets/scenes/loader.collectionc
 
 [input]
-game_binding = /in/bindings/all.input_bindingc
+game_binding = /builtins/input/all.input_bindingc
 use_accelerometer = 0
 
 [display]
@@ -45,9 +70,12 @@ launch_image_2436x1125 = /bundle/launch_images/ios_launch_2436x1125.png
 launch_image_1668x2224 = /bundle/launch_images/ios_launch_1668x2224.png
 launch_image_2224x1668 = /bundle/launch_images/ios_launch_2224x1668.png
 bundle_identifier = free.insality.template
+default_language = en
+localizations = en.ru
 
 [osx]
 bundle_identifier = free.insality.template
+localizations = en,ru
 
 [android]
 app_icon_36x36 = /bundle/icons/icon_36.png
@@ -58,6 +86,7 @@ app_icon_144x144 = /bundle/icons/icon_144.png
 app_icon_192x192 = /bundle/icons/icon_192.png
 input_method = HiddenInputField
 immersive_mode = 1
+package = free.insality.template
 
 [script]
 shared_state = 1
@@ -85,4 +114,47 @@ max_draw_calls = 256
 
 [native_extension]
 app_manifest = /bundle/manifests/game.appmanifest
+
+[defos]
+view_width = 450
+view_height = 800
+
+[render]
+clear_color_red = 1.0
+clear_color_green = 1.0
+clear_color_blue = 0.941
+
+[html5]
+show_fullscreen_button = 0
+show_made_with_defold = 0
+show_console_banner = 0
+heap_size = 128
+
+[safearea]
+resize_game_view = 0
+
+[gui]
+max_particlefx_count = 16
+max_count = 32
+
+[network]
+http_timeout = 10.0
+http_thread_count = 2
+
+[tilemap]
+max_count = 0
+max_tile_count = 0
+
+[sprite]
+max_count = 256
+
+[particle_fx]
+max_count = 32
+max_emitter_count = 32
+
+[mesh]
+max_count = 0
+
+[label]
+max_count = 32
 
