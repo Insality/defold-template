@@ -99,6 +99,7 @@ M.EVENT = {
 	IAP_UPDATE = "eva.iaps.update",
 	IAP_START = "eva.iaps.start",
 	IAP_CANCEL = "eva.iaps.cancel",
+	IAP_ERROR = "eva.iaps.error",
 	IAP_PURCHASE = "eva.iaps.purchase",
 	IAP_VALID = "eva.iaps.valid",
 	IAP_INVALID = "eva.iaps.invalid",
@@ -409,15 +410,15 @@ M.INPUT_SWIPE = {
 M.VIBRATE = {
 	LIGHT = {
 		Android = 1, -- in milliseconds
-		iOS = 1
+		iOS = 0
 	},
 	MEDIUM = {
 		Android = 50,
-		iOS = 2
+		iOS = 1
 	},
 	HEAVY = {
 		Android = 200,
-		iOS = 3
+		iOS = 2
 	},
 }
 

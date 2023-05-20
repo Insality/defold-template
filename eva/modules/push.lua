@@ -18,7 +18,7 @@ local M = {}
 
 
 local function push_listener(self, payload, origin)
-	pprint(payload, origin)
+	pprint("Push payload", payload, origin)
 end
 
 

@@ -62,7 +62,6 @@ end
 
 
 local function format(self, level, message, context)
-	local log_message = M.settings.format
 	local record_context = inspect(context, INSPECT_PARAMS)
 	if not record_context or record_context == "nil" then
 		record_context = ""
@@ -70,23 +69,35 @@ local function format(self, level, message, context)
 	record_context = string.gsub(record_context, "%%", "﹪")
 
 	local caller_info = debug.getinfo(4)
-	log_message = string.gsub(log_message, "%%date", format_time(socket.gettime()))
-	log_message = string.gsub(log_message, "%%levelname", string.format("%5s", LEVEL_NAME[level]))
-	log_message = string.gsub(log_message, "%%levelshort", LEVEL_NAME_SHORT[level])
-	log_message = string.gsub(log_message, "%%logger", self.name)
-	log_message = string.gsub(log_message, "%%source", caller_info.source)
-	log_message = string.gsub(log_message, "%%lineno", caller_info.currentline)
-	log_message = string.gsub(log_message, "%%function", caller_info.short_src)
-	log_message = string.gsub(log_message, "%%fname", caller_info.name or UNKNOWN)
-	log_message = string.gsub(log_message, "%%message", message)
-	log_message = string.gsub(log_message, "%%context", record_context)
 
-	return log_message
+	local info_block = M.settings.format or M.settings.info_block
+	local info_block_length = M.settings.info_block_length or 20
+	info_block = string.gsub(info_block, "%%date", format_time(socket.gettime()))
+	info_block = string.gsub(info_block, "%%levelname", string.format("%5s", LEVEL_NAME[level]))
+	info_block = string.gsub(info_block, "%%levelshort", LEVEL_NAME_SHORT[level])
+	info_block = string.gsub(info_block, "%%logger", self.name)
+	info_block = string.gsub(info_block, "%%source", caller_info.source)
+	info_block = string.gsub(info_block, "%%fname", caller_info.name or UNKNOWN)
+	info_block = string.sub(info_block, 1, info_block_length)
+
+	local message_block = M.settings.message_block or info_block
+	message_block = string.gsub(message_block, "%%message", message)
+	message_block = string.gsub(message_block, "%%context", record_context)
+	message_block = string.gsub(message_block, "%%lineno", caller_info.currentline)
+	message_block = string.gsub(message_block, "%%function", caller_info.short_src)
+
+	local log_format = "%-" .. info_block_length .. "s %s"
+
+
+	return string.format(log_format, info_block, message_block)
 end
 
 
 local function log_msg(self, level, message, context)
-	if level > LEVEL[M.log_level] then
+	local custom_log_level = M.custom_log_levels[self.name]
+	local log_level = LEVEL[custom_log_level or M.log_level]
+
+	if level > log_level then
 		return
 	end
 
@@ -170,11 +181,8 @@ end
 -- @local
 function M.init(settings, log_level)
 	M.settings = settings
-
-	if not LEVEL[log_level] then
-		log_level = LEVEL.FATAL
-	end
-	M.log_level = log_level
+	M.log_level = M.settings.level or LEVEL.DEBUG
+	M.custom_log_levels = settings.custom_log_levels
 end
 
 

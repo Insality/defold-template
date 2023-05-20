@@ -31,8 +31,8 @@ local function get_ad_data(ad_id)
 end
 
 
-local function get_adapter()
-	return const.require(M.ADAPTERS[app._eva_ads_data.adapter])
+local function get_adapter_instance()
+	return app._eva_ads_data.adapter_instance
 end
 
 
@@ -78,7 +78,7 @@ end
 
 
 local function is_network_ok(ad_id, ad_config)
-	return get_adapter().is_ready(ad_id, ad_config)
+	return get_adapter_instance().is_ready(ad_id, ad_config)
 end
 
 
@@ -213,7 +213,7 @@ function M.show(ad_id, success_callback, finish_callback)
 	events.event(const.EVENT.ADS_SHOW, { id = ad_id, type = ad_config.type })
 	app._eva_ads_data.last_ad_id = ad_id
 
-	get_adapter().show(ad_id, ad_config, function(id)
+	get_adapter_instance().show(ad_id, ad_config, function(id)
 		on_ads_success(app._eva_ads_data.last_ad_id)
 		if success_callback then
 			success_callback(ad_id)
@@ -284,8 +284,10 @@ function M.on_eva_init()
 	app[const.EVA.ADS] = proto.get(const.EVA.ADS)
 	saver.add_save_part(const.EVA.ADS, app[const.EVA.ADS])
 
+	local adapter = app.settings.ads.adapter or "unity"
 	app._eva_ads_data = {
-		adapter = app.settings.ads.adapter or "unity",
+		adapter = adapter,
+		adapter_instance = const.require(M.ADAPTERS[adapter]),
 		last_ad_id = nil
 	}
 
@@ -299,16 +301,16 @@ function M.after_eva_init()
 	end
 
 	local settings = app.settings.ads
-	local ads_id = nil
+	local project_id = nil
 
 	if device.is_ios() then
-		ads_id = settings.ads_id_ios
+		project_id = settings.project_id_ios
 	end
 	if device.is_android() then
-		ads_id = settings.ads_id_android
+		project_id = settings.project_id_android
 	end
 
-	get_adapter().initialize(ads_id, on_ads_loaded)
+	get_adapter_instance().initialize(project_id, on_ads_loaded)
 end
 
 

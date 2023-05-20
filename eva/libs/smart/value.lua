@@ -56,28 +56,11 @@ end
 
 function M.add_visual(self, value)
 	self.visual_credit = self.visual_credit - value
-
-	--if self.params.min then
-	--	if self:get() - self.visual_credit < self.params.min then
-	--		self.visual_credit = self:get() - self.params.min
-	--	end
-	--end
-
-	--if self.params.max then
-	--	if self:get() - self.visual_credit > self.params.max then
-	--		self.visual_credit = self:get() - self.params.max
-	--	end
-	--end
 end
 
 
 function M.get_visual(self)
 	return self:get() - self.visual_credit
-end
-
-
-function M.get_total_sum(self)
-	return self.data_table.total_sum
 end
 
 

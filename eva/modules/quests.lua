@@ -399,6 +399,7 @@ end
 
 --- Check quest is active
 -- @function eva.quests.is_active
+-- @tparam string quest_id Quest id
 -- @treturn bool Quest active state
 function M.is_active(quest_id)
 	local quests = app[const.EVA.QUESTS]
@@ -409,6 +410,7 @@ end
 
 --- Check quest is completed
 -- @function eva.quests.is_completed
+-- @tparam string quest_id Quest id
 -- @treturn bool Quest completed state
 function M.is_completed(quest_id)
 	local quests = app[const.EVA.QUESTS]
@@ -418,6 +420,7 @@ end
 
 --- Check quest is can be started now
 -- @function eva.quests.is_can_start_quest
+-- @tparam string quest_id Quest id
 -- @treturn bool Quest is can start state
 function M.is_can_start_quest(quest_id)
 	local quest_data = get_quest_config(quest_id)
@@ -551,6 +554,16 @@ end
 -- @function eva.quests.add_update_quest_event
 function M.add_update_quest_event(event)
 	events.subscribe(event, M.update_quests)
+end
+
+
+
+--- Get quest data
+-- @function eva.quests.get_quest
+-- @tparam string quest_id Quest id
+-- @treturn evadata.Quests.Quest
+function M.get_quest(quest_id)
+	return get_quest_config(quest_id)
 end
 
 

@@ -21,7 +21,7 @@ local M = {}
 
 
 local function on_disconnect(message)
-	logger:debug("Server disconnected")
+	logger:debug("Server disconnected", message)
 	app.server_data.is_connected = false
 	app.server_events.event_disconnect:trigger(message)
 	app.server_events.connect_status:trigger(false)

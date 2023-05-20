@@ -97,7 +97,16 @@
 		}
 	},
 	"log": {
-		"format": "%levelshort[%logger]<%function:%lineno>: %message %context"
+		"level": "DEBUG",
+		"info_block": "%levelshort[%logger]: ",
+		"info_block_length": 12,
+		"message_block": "%message %context \t<%function:%lineno>",
+		"custom_log_levels": {
+			"proto": "FATAL",
+			"db": "FATAL",
+			"device": "FATAL",
+			"input": "FATAL"
+		}
 	},
 	"offers": {
 		"is_disabled": false,

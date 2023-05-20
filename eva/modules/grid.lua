@@ -119,10 +119,10 @@ function M.get_z(y, z_layer, map_params)
 	z_layer = z_layer or 0
 	local data = map_params or app.grid_default
 
-	local y_value = (y - z_layer * 100000)
+	local y_value = (y - z_layer * 200)
 	y_value = data.scene.size_y - y_value
 
-	local z_pos = y_value / 100000
+	local z_pos = y_value / 200
 
 	return z_pos
 end
@@ -131,9 +131,9 @@ end
 --- Get object position
 -- Can pass the offset to calculate it correctly (+ z coordinate)
 -- @function eva.grid.get_object_pos
--- @treturn number, number, number Object position
+-- @treturn vector3 Object position
 function M.get_object_pos(x, y, z_layer, map_params)
-	return x, y, M.get_z(y, z_layer, map_params)
+	return vmath.vector3(x, y, M.get_z(y, z_layer, map_params))
 end
 
 
@@ -164,12 +164,12 @@ end
 
 --- Get tile position. Convert from i, j to map position
 -- @function eva.grid.get_tile_pos
--- @treturn number, number, number Tile position
+-- @treturn vector3 Tile position
 function M.get_tile_pos(i, j, z_layer, map_params)
 	z_layer = z_layer or 0
 	local x, y = M.cell_to_pos(i, j, map_params)
 
-	return x, y, M.get_z(y, z_layer)
+	return vmath.vector3(x, y, M.get_z(y, z_layer))
 end
 
 

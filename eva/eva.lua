@@ -1,5 +1,5 @@
 --- Custom Eva header setup
--- Copy this file to your project, comment/uncomment required libraries
+-- Copy this file to your project, comment/uncomment required modules
 -- and dynamic libraries and use it
 -- You can use eva.eva module to use all eva modules (all modules will be included in your build)
 --
@@ -92,14 +92,15 @@ require("eva.modules.iaps.iaps_mobile")
 --require("eva.modules.iaps.iaps_yandex")
 
 
---- @type eva
+---@type eva
 local Eva = {}
 
 --- Call this to init Eva module
 -- @function eva.init
 -- @tparam string settings_path path to eva_settings.json
 -- @tparam table module_settings Settings to modules. See description on eva.lua
-function Eva.init(settings_path, module_settings)
+-- @tparam string settings_path_override Path to other eva_settings.json. It will override fields in first settings
+function Eva.init(settings_path, module_settings, settings_path_override)
 	-- Set eva.* module access
 	for name, module in pairs(modules) do
 		Eva[name] = module
@@ -107,7 +108,7 @@ function Eva.init(settings_path, module_settings)
 	Eva.log = log.get_logger("eva")
 
 	-- Init eva
-	eva_system.init(settings_path, module_settings, modules)
+	eva_system.init(settings_path, module_settings, modules, settings_path_override)
 end
 
 

@@ -2,19 +2,19 @@
 	"ads": {
 		"is_disabled": true,
 		"adapter": "yandex",
-		"ads_id_ios": "999999999",
-		"ads_id_android": "999999999",
+		"project_id_ios": "999999999",
+		"project_id_android": "999999999",
 		"config": "Ads"
 	},
 	"cache": {
-		"is_disabled": true
+		"is_disabled": false
 	},
 	"camera": {
 		"is_disabled": false,
 		"input_priority": 3,
 		"move_lerp_speed": 0.87,
 		"move_border_lerp_speed": 0.09,
-		"zoom_lerp_speed": 0.7,
+		"zoom_lerp_speed": 0.6,
 		"zoom_border_lerp_speed": 0.06,
 		"friction": 0.88,
 		"friction_hold": 0.68,
@@ -136,6 +136,7 @@
 		"config": "Quests"
 	},
 	"rate": {
+		"adapter": "yandex",
 		"is_disabled": false,
 		"max_promt_count": 4
 	},

@@ -19,6 +19,7 @@
 
 local app = require("eva.app")
 local log = require("eva.log")
+local luax = require("eva.luax")
 local const = require("eva.const")
 
 local utils = require("eva.modules.utils")
@@ -95,8 +96,12 @@ local function call_each_module(func_name, ...)
 end
 
 
-local function load_settings(settings_path)
+local function load_settings(settings_path, settings_path_override)
 	local settings = utils.load_json(settings_path)
+	if settings_path_override then
+		local settings_override = utils.load_json(settings_path_override)
+		luax.table.override(settings_override, settings)
+	end
 	assert(settings, "No eva settings finded on path: " .. (settings_path or ""))
 
 	app.settings = settings
@@ -109,23 +114,28 @@ end
 -- @tparam string settings_path path to eva_settings.json
 -- @tparam table module_settings Settings to modules. See description on eva.lua
 -- @tparam table modules The list of used eva modules, setup it in your eva file
-function M.init(settings_path, module_settings, modules)
+-- @tparam string settings_path_override Path to other eva_settings.json. It will override fields in first settings
+function M.init(settings_path, module_settings, modules, settings_path_override)
 	app.clear()
 	app.eva_basic = {
 		second_counter = 1
 	}
 
-	load_settings(settings_path)
+	load_settings(settings_path, settings_path_override)
 	load_modules(modules)
 	apply_module_settings(module_settings)
 
-	log.init(app.settings.log, sys.get_config("eva.log_level", "DEBUG"))
+	log.init(app.settings.log)
 
 	call_each_module("before_eva_init")
 	call_each_module("on_eva_init")
 	call_each_module("after_eva_init")
 
-	logger:debug("Eva init completed", { settings = settings_path, version = app.settings.eva.version })
+	logger:debug("Eva init completed", {
+		settings = settings_path,
+		settings_override = settings_path_override,
+		version = app.settings.eva.version
+	})
 end
 
 

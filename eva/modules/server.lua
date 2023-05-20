@@ -10,6 +10,7 @@ local const = require("eva.const")
 local Event = require("eva.event")
 
 local game = require("eva.modules.game")
+local events = require("eva.modules.events")
 local proto = require("eva.modules.proto")
 local saver = require("eva.modules.saver")
 
@@ -72,9 +73,9 @@ function M.connect(callback)
 		return
 	end
 
-	local host = settings.server_host
-	local port = settings.server_port
-	local ssl = settings.use_ssl
+	local host = sys.get_config("eva.server_host", settings.server_host)
+	local port = tonumber(sys.get_config("eva.server_port")) or settings.server_port
+	local ssl = sys.get_config("eva.server_use_ssl") == "true" or settings.use_ssl
 	logger:debug("Start connection to Nakama server", { host = host, port = port, ssl = ssl })
 
 	server_nakama_helper.connect(app.server_data.nakama_config, app.server_data.nakama_socket, app[const.EVA.SERVER].token, function()
@@ -83,6 +84,12 @@ function M.connect(callback)
 			callback(app.server_data.nakama_session)
 		end
 	end)
+end
+
+
+--- If not connected currently, try to connect and check player session
+function M.check_connection()
+	connection_daemon()
 end
 
 
@@ -145,8 +152,11 @@ function M.on_eva_init()
 	app[const.EVA.SERVER] = proto.get(const.EVA.SERVER)
 	saver.add_save_part(const.EVA.SERVER, app[const.EVA.SERVER])
 
-	app.server_events.event_disconnect:subscribe(function()
-		schedule_reconnect()
+	app.server_events.event_disconnect:subscribe(schedule_reconnect)
+	events.subscribe(const.EVENT.GAME_FOCUS, function()
+		if not app.server_data.is_connected then
+			schedule_reconnect()
+		end
 	end)
 
 	app.server_data.daemon_timer_id = timer.delay(app.settings.server.check_connection_timer, true, connection_daemon)

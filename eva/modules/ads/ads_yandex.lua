@@ -2,13 +2,13 @@
 -- @module adapter.yandex
 -- @local
 
+local log = require("eva.log")
 local const = require("eva.const")
 local yagames = const.require("yagames.yagames")
 
 local game = require("eva.modules.game")
 local device = require("eva.modules.device")
 local sound = require("eva.modules.sound")
-local log = require("eva.log")
 
 local logger = log.get_logger("ads.yandex")
 
@@ -106,10 +106,10 @@ end
 
 --- Init the ads adapter
 -- @function adapter.initialize
--- @tparam string ads_id
+-- @tparam string project_id
 -- @tparam function on_ready_callback
 -- @local
-function Ads.initialize(ads_id, on_ready_callback)
+function Ads.initialize(project_id, on_ready_callback)
 	Ads._on_ready_callback = on_ready_callback
 	Ads._music_gain = sound.get_music_gain()
 	Ads._sound_gain = sound.get_sound_gain()

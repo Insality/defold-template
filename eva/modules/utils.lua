@@ -4,8 +4,12 @@
 -- @submodule eva
 
 local const = require("eva.const")
+local luax = require("eva.luax")
+local log = require("eva.log")
 
 local events = require("eva.modules.events")
+
+local logger = log.get_logger("utils")
 
 local M = {}
 
@@ -109,11 +113,13 @@ function M.load_image(node, image_path, image_id)
 
 	local resource_data, is_error = sys.load_resource(image_path)
 	if is_error then
+		logger:warn("Error in utils.load_image", { error = is_error, path = image_path, node = node, image_id = image_id })
 		return nil, is_error
 	end
 
-	local img = image.load(resource_data)
+	local img = image.load(resource_data, true)
 	if not img then
+		logger:warn("Unable to load image", { error = is_error, path = image_path, node = node, image_id = image_id })
 		return nil, "Unable to load image"
 	end
 
@@ -122,8 +128,77 @@ function M.load_image(node, image_path, image_id)
 		gui.set_texture(node, image_id)
 		return true, "Set new texture"
 	else
+		logger:warn("Unable to create texture", { error = is_error, path = image_path, node = node, image_id = image_id })
 		return nil, "Unable to create texture"
 	end
+end
+
+
+function M.fit_into_screen(node)
+	local window_x, window_y = window.get_size()
+	local stretch_x = window_x / gui.get_width()
+    local stretch_y = window_y / gui.get_height()
+
+	local node_size = gui.get_size(node)
+	local scale_koef_x = window_x / node_size.x
+	local scale_koef_y = window_y / node_size.y
+
+    local x_koef = scale_koef_x / math.min(stretch_x, stretch_y)
+    local y_koef = scale_koef_y / math.min(stretch_x, stretch_y)
+
+	gui.set_scale(node, vmath.vector3(math.max(x_koef, y_koef)))
+end
+
+
+function M.web_write_clipboard(value)
+	if not html5 then
+		return nil
+	end
+
+	local run_me = ""
+	.. "var tempInput = document.createElement('input');"
+	.. "tempInput.style = 'position: absolute; left: -1000px; top: -1000px';"
+	.. "tempInput.value = '" .. value .. "';"
+	.. "document.body.appendChild(tempInput);"
+	.. "tempInput.select();"
+	.. "document.execCommand('copy');"
+	.. "document.body.removeChild(tempInput);"
+	return html5.run(run_me)
+end
+
+
+function M.web_check_clipboard_read_permission()
+	if not html5 then
+		return false
+	end
+
+	local html5_query = [[
+
+	navigator.permissions.query({
+		name: 'clipboard-read'
+	}).then(permissionStatus => {
+		// Will be 'granted', 'denied' or 'prompt':
+		console.log(permissionStatus.state);
+		return permissionStatus.state;
+	});
+
+	]]
+
+	return html5.run(html5_query)
+end
+
+
+function M.get_arg_from_url(url_string, arg_name)
+	local is_exist = string.find(url_string, arg_name .. "=")
+	if not is_exist then
+	  return nil
+	end
+	local right_part = string.sub(url_string, is_exist)
+	right_part = luax.string.split(right_part, "?")[1]
+	right_part = luax.string.split(right_part, "&")[1]
+	right_part = luax.string.split(right_part, "=")[2]
+
+	return right_part
 end
 
 

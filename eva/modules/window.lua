@@ -167,7 +167,9 @@ function M.show(window_id, window_data, in_queue)
 
 	-- Hello, Pyramids again!
 	settings.before_show_window(function()
-		monarch.show(window_id, nil, window_data, function()
+		local window_show_args = {}
+		window_show_args.no_stack = settings.no_stack
+		monarch.show(window_id, window_show_args, window_data, function()
 			settings.after_show_window()
 
 			events.event(const.EVENT.WINDOW_SHOW, { window_id = window_id })
@@ -300,15 +302,19 @@ function M.disappear(window_id, callback)
 	local settings = get_settings(window_id)
 	msg.post(".", "release_input_focus")
 
-	settings.disappear_func(settings, function()
-		monarch.back(nil, function()
-			-- TODO: If it was popup on popup??
-			M.on_close_window(window_id)
+	local back_callback = function()
+		M.on_close_window(window_id)
+		if callback then
+			callback()
+		end
+	end
 
-			if callback then
-				callback()
-			end
-		end)
+	settings.disappear_func(settings, function()
+		if settings.no_stack then
+			monarch.hide(window_id, back_callback)
+		else
+			monarch.back(nil, back_callback)
+		end
 	end)
 end
 
