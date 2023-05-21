@@ -32,6 +32,7 @@ dependencies#22 = https://github.com/defold/extension-crypt/archive/refs/tags/1.
 
 [bootstrap]
 main_collection = /assets/scenes/loader.collectionc
+render = /game/system/game.renderc
 
 [input]
 game_binding = /builtins/input/all.input_bindingc
@@ -72,7 +73,7 @@ launch_image_2224x1668 = /bundle/launch_images/ios_launch_2224x1668.png
 bundle_identifier = free.insality.gametemplate
 default_language = en
 localizations = en.ru
-bundle_name =
+bundle_name = 
 bundle_version = 1
 
 [osx]
@@ -177,3 +178,4 @@ use_custom_id = 1
 enable_info_log = 0
 enable_verbose_log = 0
 auto_detect_app_version = 1
+

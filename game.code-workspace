@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			".cache_deployer": true,
+			"dist": true,
+			"build": true,
+			".internal": true,
+			".gitattributes": true,
+			"manifest.private.der": true,
+			"manifest.public.der": true,
+			"provisions": true,
+			"input": true,
+			"bundle": true,
+			"assets": true,
+		}
+	}
+}

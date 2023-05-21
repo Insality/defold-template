@@ -1,7 +1,7 @@
 name: "scene_menu"
 instances {
-  id: "camera"
-  prototype: "/rendercam/camera.go"
+  id: "camera_menu"
+  prototype: "/game/system/camera.go"
   position {
     x: 694.0
     y: 647.0
@@ -12,39 +12,6 @@ instances {
     y: 0.0
     z: 0.0
     w: 1.0
-  }
-  component_properties {
-    id: "script"
-    properties {
-      id: "nearZ"
-      value: "-100.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "farZ"
-      value: "100.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "useViewArea"
-      value: "true"
-      type: PROPERTY_TYPE_BOOLEAN
-    }
-    properties {
-      id: "viewArea"
-      value: "900.0, 900.0, 0.0"
-      type: PROPERTY_TYPE_VECTOR3
-    }
-    properties {
-      id: "fixedArea"
-      value: "false"
-      type: PROPERTY_TYPE_BOOLEAN
-    }
-    properties {
-      id: "fixedHeight"
-      value: "true"
-      type: PROPERTY_TYPE_BOOLEAN
-    }
   }
   scale3 {
     x: 1.0

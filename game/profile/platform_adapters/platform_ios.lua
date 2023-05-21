@@ -23,33 +23,33 @@ end
 
 ---@param callback func Promise resolver
 function PlatformiOS:login(callback)
-    -- callback()
-    if siwa.is_supported() then
-        print("Sign in with Apple is supported")
-    else
-        print("Sign in with Apple is not supported")
-    end
+	-- callback()
+	if siwa.is_supported() then
+		print("Sign in with Apple is supported")
+	else
+		print("Sign in with Apple is not supported")
+	end
 
-    siwa.authenticate(function(_, data)
-        print(data.identity_token)
-        print(data.user_id)
-        print(data.first_name, data.family_name)
-        print(data.email)
-        if data.user_status == siwa.STATUS_LIKELY_REAL then
-            print("Likely a real person")
-        end
-        pprint(data)
-        callback()
-    end)
+	siwa.authenticate(function(_, data)
+		print(data.identity_token)
+		print(data.user_id)
+		print(data.first_name, data.family_name)
+		print(data.email)
+		if data.user_status == siwa.STATUS_LIKELY_REAL then
+			print("Likely a real person")
+		end
+		pprint(data)
+		callback()
+	end)
 end
 
 
 ---@param user_id string
 function PlatformiOS:on_login(user_id)
-    self._is_player_inited = true
-    self._data.apple_data.user_id = user_id
-    self._data.apple_data.is_connected = true
-    -- self._data.apple_data.name = gpgs.get_display_name()
+	self._is_player_inited = true
+	self._data.apple_data.user_id = user_id
+	self._data.apple_data.is_connected = true
+	-- self._data.apple_data.name = gpgs.get_display_name()
 end
 
 
@@ -65,16 +65,16 @@ end
 ---@param on_success function|nil
 ---@param on_error function|nil
 function PlatformiOS:write_to_clipboard(text, on_success, on_error)
-    if clipboard then
-        clipboard.copy(text)
-        if on_success then
-            on_success()
-        end
-        return
-    end
-    if on_error then
-        on_error()
-    end
+	if clipboard then
+		clipboard.copy(text)
+		if on_success then
+			on_success()
+		end
+		return
+	end
+	if on_error then
+		on_error()
+	end
 end
 
 
@@ -83,7 +83,7 @@ end
 
 
 function PlatformiOS:is_share_available()
-    return true
+	return true
 end
 
 

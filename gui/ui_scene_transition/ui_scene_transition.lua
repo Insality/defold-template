@@ -40,6 +40,9 @@ function UiSceneLoader:set_loading(is_loading, callback)
 		if not is_loading then
 			gui.set_enabled(self.root, false)
 		end
+		if callback then
+			callback()
+		end
 	end)
 end
 

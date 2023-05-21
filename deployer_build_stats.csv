@@ -17,3 +17,4 @@ date,sha,version,build_size,build_time,platform,mode,is_cache_using,commits_coun
 2023-05-20T19:10:44Z,1a2d070e6b8b9b199294214781c08cfe52f9250a,0.0.11,2412,22,arm64-ios,debug,true,11
 2023-05-20T19:14:54Z,1a2d070e6b8b9b199294214781c08cfe52f9250a,0.0.11,2432,33,arm64-ios,debug,true,11
 2023-05-20T19:21:27Z,1a2d070e6b8b9b199294214781c08cfe52f9250a,0.0.11,2432,21,arm64-ios,debug,true,11
+2023-05-21T06:00:37Z,5e948ec5be5358f511f0b63837bd76e4fd981f76,0.0.13,2452,46,arm64-ios,debug,true,13

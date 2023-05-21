@@ -129,6 +129,7 @@ function init(self)
 	app.server = Server()
 
 	msg.post(".", const.MSG.START_LOADING)
+	msg.post(".", "acquire_input_focus")
 end
 
 
@@ -155,7 +156,14 @@ function on_message(self, message_id, message, sender)
 			msg.post(".", "start_game")
 		end)
 	end
+
 	if message_id == const.MSG.START_GAME then
 		eva.window.show_scene(const.WINDOW.SCENE_MENU)
 	end
+end
+
+
+---@param self scene.loader
+function on_input(self, action_id, action)
+	return eva.input.on_input(action_id, action)
 end

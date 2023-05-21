@@ -264,7 +264,7 @@ function init(self)
 	self.prefab = gui.get_node("prefab_cheat_button")
 	gui.set_enabled(self.prefab, false)
 	self.grid = self.druid:new_static_grid("grid", self.prefab, BUTTONS_PER_LINE)
-	self.button_back = self.druid:new_button("button_main", show_page, PAGES.MAIN)
+	self.button_back = self.druid:new_button("button_main/button", show_page, PAGES.MAIN)
 	self.button_back:set_key_trigger(druid_const.ACTION_BACKSPACE)
 
 	self.druid:new_layout("node_upscale_limit"):set_max_gui_upscale(const.MAX_GUI_UPSCALE)
