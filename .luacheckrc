@@ -73,4 +73,5 @@ globals = {
   "lua_script_instance",
   "review",
   "safearea",
+  "websocket",
 }

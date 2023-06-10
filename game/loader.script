@@ -95,7 +95,7 @@ local function connect_to_server(self)
 	eva.server.connect(function(session)
 		if session then
 			app.profile:set_user_id(session.user_id)
-			--app.server.requester:load_user_code()
+			app.server.requester:load_user_code()
 			--app.server.requester:set_status(const.STATUS.MENU)
 		end
 	end)

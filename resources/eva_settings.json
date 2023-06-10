@@ -173,10 +173,11 @@
 		"check_connection_timer": 30,
 		"reconnect_attempts_time": [1, 5, 10, 15, 60],
 		"server_key": "SERVER_KER_HERE",
+		"is_auto_socket_connection": true,
 		"http_key": "HTTP_KEY_HERE",
 		"encryption_key": "ENCRYPTION_KEY_HERE",
 		"refresh_encryption_key": "REFRESH_KEY_HERE",
-		"debug_log": true,
+		"debug_log": false,
 		"use_ssl": false
 	},
 	"skill": {

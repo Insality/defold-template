@@ -193,6 +193,7 @@ M.EVA = {
 	OFFERS = "eva.Offers",
 	DAILY = "eva.Daily",
 	FESTIVALS = "eva.Festivals",
+	QUEUE = "eva.Queue",
 	QUESTS = "eva.Quests",
 	PUSH = "eva.Push",
 	INVOICES = "eva.Invoices",

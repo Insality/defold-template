@@ -18,6 +18,7 @@ local PAGES = {
 	SAVE = "save",
 	WINDOWS = "windows",
 	EVA = "eva",
+	SERVER = "server",
 }
 
 local COLORS = {
@@ -159,6 +160,7 @@ PAGES_FUNC[PAGES.MAIN] = function(self)
 	add_cheat_button(self, "Save", function() show_page(self, PAGES.SAVE) end, COLORS.BLUE)
 	add_cheat_button(self, "Windows", function() show_page(self, PAGES.WINDOWS) end, COLORS.BLUE)
 	add_cheat_button(self, "Eva", function() show_page(self, PAGES.EVA) end, COLORS.BLUE)
+	add_cheat_button(self, "Server", function() show_page(self, PAGES.SERVER) end, COLORS.BLUE)
 end
 
 ---@param self window.admin
@@ -210,6 +212,7 @@ PAGES_FUNC[PAGES.SAVE] = function(self)
 	add_cheat_button(self, "empty", function() end, COLORS.EMPTY)
 end
 
+
 ---@param self window.admin
 PAGES_FUNC[PAGES.WINDOWS] = function(self)
 	add_cheat_button(self, "Info", function()
@@ -243,6 +246,26 @@ PAGES_FUNC[PAGES.EVA] = function(self)
 	end)
 	add_cheat_button(self, "Share", function()
 		eva.share.screen("Debug share text")
+	end)
+end
+
+
+---@param self window.admin
+PAGES_FUNC[PAGES.SERVER] = function(self)
+	add_cheat_button(self, "Connect", function()
+		eva.server.connect()
+	end)
+	add_cheat_button(self, "Disconnect", function()
+		local socket = eva.server.get_socket()
+		websocket.disconnect(socket.connection)
+	end)
+	add_cheat_button(self, "Is connected", function()
+		print("Is server connected?", eva.server.is_connected())
+	end)
+	add_cheat_button(self, "Server Get", function()
+		app.server.requester:get_user_id_by_user_code("AAAB", function(value)
+			print("result:", value)
+		end)
 	end)
 end
 

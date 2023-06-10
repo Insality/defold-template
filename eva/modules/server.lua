@@ -87,6 +87,11 @@ function M.connect(callback)
 end
 
 
+function M.disconnect(callback)
+
+end
+
+
 --- If not connected currently, try to connect and check player session
 function M.check_connection()
 	connection_daemon()

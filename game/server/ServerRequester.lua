@@ -58,15 +58,15 @@ end
 
 
 function ServerRequester:get_user_id_by_user_code(user_code, callback)
-	local read_object = nakama.create_api_read_storage_object_id(
-		const.SERVER_STORAGE.USER_CODE_COLLECTION,
-		user_code)
+	nakama.sync(function()
+		local objects = {{
+			collection = const.SERVER_STORAGE.USER_CODE_COLLECTION,
+			key = user_code
+		}}
 
-	local read_message = nakama.create_api_read_storage_objects_request({ read_object })
-
-	nakama.read_storage_objects(eva.server.get_client(), read_message, function(response)
-		local user_data = response.objects and response.objects[1]
-		if user_data then
+		local result = nakama.read_storage_objects(eva.server.get_client(), objects)
+		if not result.error then
+			local user_data = result.objects and result.objects[1]
 			local user_id = json.decode(user_data.value).value
 			if callback then
 				callback(user_id)
@@ -78,18 +78,22 @@ end
 
 ---@param callback func<string>
 function ServerRequester:load_user_code(callback)
-	local read_object = nakama.create_api_read_storage_object_id(
-		const.SERVER_STORAGE.USER_CODE_COLLECTION,
-		const.SERVER_STORAGE.USER_CODE_KEY, app.profile:get_user_id())
+	nakama.sync(function()
+		local objects = {{
+			collection = const.SERVER_STORAGE.USER_CODE_COLLECTION,
+			key = const.SERVER_STORAGE.USER_CODE_KEY,
+			userId = app.profile:get_user_id()
+		}}
 
-	local read_message = nakama.create_api_read_storage_objects_request({ read_object })
-	nakama.read_storage_objects(eva.server.get_client(), read_message, function(response)
-		local user_data = response.objects and response.objects[1]
-		if user_data then
-			local user_code = json.decode(user_data.value).value
-			app.profile:set_user_code(user_code)
-			if callback then
-				callback(user_code)
+		local result = nakama.read_storage_objects(eva.server.get_client(), objects)
+		if not result.error then
+			local user_data = result.objects and result.objects[1]
+			if user_data then
+				local user_code = json.decode(user_data.value).value
+				app.profile:set_user_code(user_code)
+				if callback then
+					callback(user_code)
+				end
 			end
 		end
 	end)
