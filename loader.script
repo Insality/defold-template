@@ -111,32 +111,8 @@ end
 
 ---@param self scene.loader
 local function init_token(self)
-	token.init("/resources/tokens.json")
-	token.create_container("wallet")
-end
-
-
----@param self scene.loader
-local function init_quest(self)
-	---@class quest.config
-	---@field reward table<string, number>
-	---@field required_tokens table<string, number>
-
-	quest.on_quest_completed:subscribe(function(quest_id, quest_config)
-		if quest_config.reward then
-			token.add_many("wallet", quest_config.reward, "quest")
-		end
-	end)
-
-	quest.is_can_start:subscribe(function(quest_id, quest_config)
-		if quest_config.required_tokens then
-			return token.is_enough_many("wallet", quest_config.required_tokens)
-		end
-
-		return true
-	end)
-
-	quest.init("/resources/quests.json")
+	--token.init("/resources/tokens.json")
+	--token.create_container("wallet")
 end
 
 
@@ -149,7 +125,6 @@ function init(self)
 	init_saver(self)
 	init_lang(self)
 	init_token(self)
-	init_quest(self)
 	init_defos(self)
 
 	msg.post(".", "start_game")

@@ -3,6 +3,10 @@ instances {
   id: "sound"
   prototype: "/assets/sounds/sounds.go"
 }
+instances {
+  id: "debug_panel"
+  prototype: "/entity/debug_panel/debug_panel.go"
+}
 collection_instances {
   id: "spawner"
   collection: "/game/spawner.collection"

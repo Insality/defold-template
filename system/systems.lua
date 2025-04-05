@@ -15,6 +15,7 @@ function M.get_systems()
 
 		require("system.flow_game.system_flow_game").create_system(),
 
+		require("entity.debug_panel.system_debug_panel").create_system(),
 		require("entity.gui_menu.system_gui_menu").create_system(),
 		-- {NEW_SYSTEMS_HERE}
 	})
