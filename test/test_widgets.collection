@@ -1,0 +1,10 @@
+name: "test"
+scale_along_z: 0
+embedded_instances {
+  id: "go"
+  data: "components {\n"
+  "  id: \"test_widgets\"\n"
+  "  component: \"/test/test_widgets.gui\"\n"
+  "}\n"
+  ""
+}

@@ -1,0 +1,173 @@
+local log = require("log.log")
+local lang = require("lang.lang")
+local sound = require("libs.sound")
+local druid = require("druid.druid")
+local saver = require("saver.saver")
+local event = require("event.event")
+local quest = require("quest.quest")
+local token = require("token.token")
+local events = require("event.events")
+local decore = require("decore.decore")
+local detiled = require("detiled.detiled")
+local panthera = require("panthera.panthera")
+
+---@class scene.loader
+
+---@param self scene.loader
+local function init_random(self)
+	math.randomseed(socket.gettime())
+	math.random()
+	math.random()
+	math.random()
+end
+
+
+---@param self scene.loader
+local function init_defos(self)
+	if not defos then
+		return
+	end
+
+	local is_debug = sys.get_engine_info().is_debug
+	local system_name = sys.get_sys_info().system_name
+	local is_desktop = system_name == "Windows" or system_name == "Darwin" or system_name == "Linux"
+
+	if is_debug and is_desktop then
+		timer.delay(1, true, function()
+			local x, y, w, h = defos.get_window_size()
+			saver.set_value("window.last_state", { x, y, w, h })
+			saver.save_game_state()
+		end)
+
+		-- Restore window size and position
+		local prev_settings = saver.get_value("window.last_state")
+		if prev_settings then
+			---@cast prev_settings number[]
+			local x, y, w, h = unpack(prev_settings)
+			-- Limit size to 300x200
+			x = vmath.clamp(x, 0, 4000)
+			y = vmath.clamp(y, 0, 4000)
+			w = vmath.clamp(w, 300, 4000)
+			h = vmath.clamp(h, 200, 4000)
+			defos.set_window_size(x, y, w, h)
+		end
+	end
+end
+
+
+---@param self scene.loader
+local function init_logger(self)
+	lang.set_logger(log.get_logger("lang"))
+	event.set_logger(log.get_logger("event"))
+	saver.set_logger(log.get_logger("saver"))
+	token.set_logger(log.get_logger("token"))
+	quest.set_logger(log.get_logger("quest"))
+	decore.set_logger(log.get_logger("decore", "TRACE"))
+	detiled.set_logger(log.get_logger("detiled"))
+	panthera.set_logger(log.get_logger("panthera"))
+end
+
+
+---@param self scene.loader
+local function init_druid(self)
+	druid.set_text_function(lang.txp)
+end
+
+
+---@param self scene.loader
+local function init_window_listener(self)
+	window.set_listener(function(_, window_event)
+		druid.on_window_callback(window_event)
+		events.trigger("window_event", window_event)
+	end)
+end
+
+
+---@param self scene.loader
+local function init_saver(self)
+	---@class saver.game_state
+	---@field lang lang.state
+	---@field token token.state
+	---@field quest quest.state
+	---@field sound sound.state
+
+	saver.before_save_callback = function()
+		events.trigger("saver.before_save")
+	end
+
+	saver.init()
+	saver.bind_save_state("lang", lang.state)
+	saver.bind_save_state("token", token.state)
+	saver.bind_save_state("quest", quest.state)
+	saver.bind_save_state("sound", sound.state)
+end
+
+
+---@param self scene.loader
+local function init_lang(self)
+	lang.init()
+end
+
+
+---@param self scene.loader
+local function init_token(self)
+	token.init("/resources/tokens.json")
+	token.create_container("wallet")
+end
+
+
+---@param self scene.loader
+local function init_quest(self)
+	---@class quest.config
+	---@field reward table<string, number>
+	---@field required_tokens table<string, number>
+
+	quest.on_quest_completed:subscribe(function(quest_id, quest_config)
+		if quest_config.reward then
+			token.add_many("wallet", quest_config.reward, "quest")
+		end
+	end)
+
+	quest.is_can_start:subscribe(function(quest_id, quest_config)
+		if quest_config.required_tokens then
+			return token.is_enough_many("wallet", quest_config.required_tokens)
+		end
+
+		return true
+	end)
+
+	quest.init("/resources/quests.json")
+end
+
+
+---@param self scene.loader
+function init(self)
+	init_random(self)
+	init_logger(self)
+	init_druid(self)
+	init_window_listener(self)
+	init_saver(self)
+	init_lang(self)
+	init_token(self)
+	init_quest(self)
+	init_defos(self)
+
+	msg.post(".", "start_game")
+end
+
+
+---@param self scene.loader
+---@param message_id hash
+---@param message table
+---@param sender url
+function on_message(self, message_id, message, sender)
+	if message_id == hash("start_game") then
+		msg.post("#game_proxy", "load")
+	end
+
+	if message_id == hash("proxy_loaded") then
+		msg.post(sender, "init")
+		msg.post(sender, "enable")
+		msg.post(sender, "acquire_input_focus")
+	end
+end

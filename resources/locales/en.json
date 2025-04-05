@@ -1,0 +1,10 @@
+{
+  "002_open_door": "Open Door",
+  "003_open_door": "Find Treasure",
+  "dialog_treasure": "Hello!\nWell Well Well...\nDo you <color=EE6F6F>have</color> <delay=0.5>something to say</delay>?\nInteresting!\nI can pass you but...\nI need a key",
+  "dialog_first_meet": "You...<delay=1> What</delay> are you doing here?\nThis place… it wasn’t meant for you.\nYet, here you are. Curious.\nDid you come by choice... or were you led?\nThe colors… they aren’t as they seem.\nBut I see them. I see everything.\nPerhaps you will, too… soon.\nNow, step carefully.",
+  "game_title": "Color Dungeon",
+  "ui_completed": "Completed!",
+  "ui_new_quest": "New Quest!",
+  "ui_reward": "Reward"
+}

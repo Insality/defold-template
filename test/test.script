@@ -1,0 +1,13 @@
+local deftest = require("deftest.deftest")
+
+function init(self)
+	deftest.add(require("core.system.health.test_health"))
+	deftest.add(require("core.system.fsm.test_fsm"))
+	deftest.add(require("core.system.transform.test_transform"))
+	deftest.add(require("core.system.quadtree.test_quadtree"))
+	deftest.add(require("entity.gui_menu.test.test_system_gui_menu"))
+	-- {NEW_TESTS_HERE}
+
+	local is_report = (sys.get_config_int("test.report", 0) == 1)
+	deftest.run({ coverage = { enabled = is_report } })
+end

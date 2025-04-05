@@ -1,0 +1,16 @@
+name: "test"
+scale_along_z: 0
+embedded_instances {
+  id: "go"
+  data: "components {\n"
+  "  id: \"test\"\n"
+  "  component: \"/test/test.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"entity_gui_menu\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/entity/gui_menu/gui_menu.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}

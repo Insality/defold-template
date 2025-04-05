@@ -1,181 +1,87 @@
 [project]
-title = Game Template
+title = Decore Template
 custom_resources = /resources
 bundle_resources = /bundle
-version = 0.0.1
 publisher = Insality Games
 developer = Insality
 platform_name = stub
-dependencies#0 = https://github.com/insalitygames/monarch/archive/master.zip
-dependencies#1 = https://github.com/insalitygames/rendercam/archive/master.zip
-dependencies#2 = https://github.com/insalitygames/defold-protobuf/archive/master.zip
-dependencies#3 = https://github.com/britzl/defold-input/archive/refs/tags/4.6.0.zip
-dependencies#4 = https://github.com/insalitygames/LuaScriptInstance/archive/master.zip
-dependencies#5 = https://github.com/insalitygames/uptime/archive/master.zip
-dependencies#6 = https://github.com/insalitygames/def_taptic_engine/archive/master.zip
-dependencies#7 = https://github.com/insalitygames/vibrate/archive/master.zip
-dependencies#8 = https://github.com/defold/extension-safearea/archive/refs/tags/1.3.1.zip
-dependencies#9 = https://github.com/Insality/druid/archive/refs/tags/0.10.3.zip
-dependencies#10 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.0.zip
-dependencies#11 = https://github.com/defold/extension-websocket/archive/refs/tags/3.1.0.zip
-dependencies#12 = https://github.com/heroiclabs/nakama-defold/archive/refs/tags/3.1.0.zip
-dependencies#13 = https://github.com/GameAnalytics/GA-SDK-DEFOLD/archive/refs/tags/4.2.6.zip
-dependencies#14 = https://github.com/GameAnalytics/defold-openssl/archive/refs/tags/1.0.0.zip
-dependencies#15 = https://github.com/britzl/defold-clipboard/archive/refs/tags/1.3.0.zip
-dependencies#16 = https://github.com/defold/extension-push/archive/refs/tags/4.0.0.zip
-dependencies#17 = https://github.com/defold/extension-iac/archive/refs/tags/1.2.4.zip
-dependencies#18 = https://github.com/defold/extension-siwa/archive/refs/tags/1.1.2.zip
-dependencies#19 = https://github.com/britzl/defold-sharing/archive/refs/tags/4.3.0.zip
-dependencies#20 = https://github.com/defold/extension-iap/archive/refs/tags/5.0.1.zip
-dependencies#21 = https://github.com/britzl/defold-screenshot/archive/refs/tags/1.9.1.zip
-dependencies#22 = https://github.com/defold/extension-crypt/archive/refs/tags/1.0.2.zip
+dependencies#0 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
+dependencies#1 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
+dependencies#2 = https://github.com/Insality/defold-log/archive/refs/heads/develop.zip
+dependencies#3 = https://github.com/Insality/defold-event/archive/refs/heads/develop.zip
+dependencies#4 = https://github.com/Insality/panthera/archive/refs/heads/develop.zip
+dependencies#5 = https://github.com/Insality/druid/archive/refs/heads/develop.zip
+dependencies#6 = https://github.com/Insality/defold-tweener/archive/refs/heads/develop.zip
+dependencies#7 = https://github.com/Insality/defold-saver/archive/refs/heads/develop.zip
+dependencies#8 = https://github.com/Insality/defold-lang/archive/refs/heads/develop.zip
+dependencies#9 = https://github.com/Insality/decore/archive/refs/heads/develop.zip
+dependencies#10 = https://github.com/Insality/detiled/archive/refs/heads/develop.zip
+dependencies#11 = https://github.com/Insality/defold-token/archive/refs/heads/develop.zip
+dependencies#12 = https://github.com/Insality/defold-quest/archive/refs/heads/main.zip
 
 [bootstrap]
-main_collection = /assets/scenes/loader.collectionc
-render = /game/system/game.renderc
+main_collection = /loader.collectionc
+render = /builtins/render/default.renderc
 
 [input]
 game_binding = /builtins/input/all.input_bindingc
 use_accelerometer = 0
 
 [display]
-width = 900
-height = 1600
+width = 1920
+height = 1080
 high_dpi = 1
 
-[ios]
-app_icon_120x120 = /bundle/icons/icon_120.png
-app_icon_180x180 = /bundle/icons/icon_180.png
-app_icon_76x76 = /bundle/icons/icon_76.png
-app_icon_152x152 = /bundle/icons/icon_152.png
-app_icon_57x57 = /bundle/icons/icon_57.png
-app_icon_114x114 = /bundle/icons/icon_114.png
-app_icon_72x72 = /bundle/icons/icon_72.png
-app_icon_144x144 = /bundle/icons/icon_144.png
-app_icon_167x167 = /bundle/icons/icon_167.png
-launch_image_320x480 = /bundle/launch_images/ios_launch_320x480.png
-launch_image_640x960 = /bundle/launch_images/ios_launch_640x960.png
-launch_image_640x1136 = /bundle/launch_images/ios_launch_640x1136.png
-launch_image_750x1334 = /bundle/launch_images/ios_launch_750x1334.png
-launch_image_768x1024 = /bundle/launch_images/ios_launch_768x1024.png
-launch_image_1536x2048 = /bundle/launch_images/ios_launch_1536x2048.png
-launch_image_1024x768 = /bundle/launch_images/ios_launch_1024x768.png
-launch_image_1242x2208 = /bundle/launch_images/ios_launch_1242x2208.png
-launch_image_2208x1242 = /bundle/launch_images/ios_launch_2208x1242.png
-launch_image_2048x1536 = /bundle/launch_images/ios_launch_2048x1536.png
-launch_image_2048x2732 = /bundle/launch_images/ios_launch_2048x2732.png
-launch_image_2732x2048 = /bundle/launch_images/ios_launch_2732x2048.png
-launch_image_1334x750 = /bundle/launch_images/ios_launch_1334x750.png
-launch_image_1125x2436 = /bundle/launch_images/ios_launch_1125x2436.png
-launch_image_2436x1125 = /bundle/launch_images/ios_launch_2436x1125.png
-launch_image_1668x2224 = /bundle/launch_images/ios_launch_1668x2224.png
-launch_image_2224x1668 = /bundle/launch_images/ios_launch_2224x1668.png
-bundle_identifier = free.insality.gametemplate
-default_language = en
-localizations = en.ru
-bundle_name = 
-bundle_version = 1
-
 [osx]
-bundle_identifier = free.insality.gametemplate
 localizations = en,ru
 
 [android]
-app_icon_36x36 = /bundle/icons/icon_36.png
-app_icon_48x48 = /bundle/icons/icon_48.png
-app_icon_72x72 = /bundle/icons/icon_72.png
-app_icon_96x96 = /bundle/icons/icon_96.png
-app_icon_144x144 = /bundle/icons/icon_144.png
-app_icon_192x192 = /bundle/icons/icon_192.png
 input_method = HiddenInputField
 immersive_mode = 1
-package = free.insality.gametemplate
 
 [script]
 shared_state = 1
 
-[physics]
-gravity_y = -1000.0
-scale = 0.01
-world_count = 1
-
-[eva]
-settings = /resources/eva_settings.json
-
-[iap]
-auto_finish_transactions = 0
-
 [model]
 max_count = 0
 
-[collection]
-max_instances = 256
-
 [graphics]
-texture_profiles = /eva/system/eva.texture_profiles
 max_draw_calls = 256
 
 [native_extension]
-app_manifest = /bundle/manifests/game.appmanifest
-
-[defos]
-view_width = 450
-view_height = 800
+app_manifest = /game/game.appmanifest
 
 [render]
-clear_color_red = 1.0
-clear_color_green = 1.0
-clear_color_blue = 0.941
+clear_color_red = 0.122
+clear_color_green = 0.113
+clear_color_blue = 0.172
 
 [html5]
 show_fullscreen_button = 0
 show_made_with_defold = 0
 show_console_banner = 0
 heap_size = 128
-
-[safearea]
-resize_game_view = 0
-
-[gui]
-max_particlefx_count = 16
-max_count = 32
-
-[network]
-http_timeout = 10.0
-http_thread_count = 2
+scale_mode = stretch
 
 [tilemap]
 max_count = 0
 max_tile_count = 0
 
 [sprite]
-max_count = 256
-
-[particle_fx]
-max_count = 32
-max_emitter_count = 32
+max_count = 1024
 
 [mesh]
 max_count = 0
 
-[label]
-max_count = 32
+[saver]
+autosave_timer = 2
 
-[gameanalytics]
-game_key_html5 = asdasdasd
-secret_key_html5 = asdasdasd
-game_key_osx = asdasdasd
-secret_key_osx = asdasdasd
-game_key_android = asdasdasd
-secret_key_android = asdasdasd
-game_key_ios = asdasdasd
-secret_key_ios = asdasdasd
-build_html5 = 0.1.0
-build_osx = 0.1.0
-build_android = 0.1.0
-build_ios = 0.1.0
-use_custom_id = 1
-enable_info_log = 0
-enable_verbose_log = 0
-auto_detect_app_version = 1
+[decore]
+assistant_systems_path = /system/systems.lua
+assistant_entities_path = /entity/entities.lua
+
+[lang]
+path = /resources/locales
+langs = en
+default = en
 

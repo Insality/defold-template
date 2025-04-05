@@ -1,0 +1,137 @@
+script: "/druid/druid_widget.gui_script"
+fonts {
+  name: "text"
+  font: "/core/fonts/text.font"
+}
+textures {
+  name: "gui"
+  texture: "/assets/atlases/gui.atlas"
+}
+textures {
+  name: "druid"
+  texture: "/druid/druid.atlas"
+}
+nodes {
+  position {
+    x: 960.0
+    y: 540.0
+  }
+  size {
+    x: 1920.0
+    y: 1080.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    y: 247.0
+  }
+  scale {
+    x: 5.0
+    y: 5.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "NEW AMAZING GAME"
+  font: "text"
+  id: "text_header"
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -262.0
+  }
+  size {
+    x: 400.0
+    y: 160.0
+  }
+  color {
+    x: 0.933
+    y: 0.435
+    z: 0.435
+  }
+  type: TYPE_BOX
+  texture: "druid/ui_circle_32"
+  id: "button_play"
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    x: 16.0
+    y: 16.0
+    z: 16.0
+    w: 16.0
+  }
+}
+nodes {
+  scale {
+    x: 3.0
+    y: 3.0
+  }
+  size {
+    x: 120.0
+    y: 40.0
+  }
+  type: TYPE_TEXT
+  text: "Play"
+  font: "text"
+  id: "text_play"
+  parent: "button_play"
+  inherit_alpha: true
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+}
+nodes {
+  position {
+    x: 684.0
+    y: 352.0
+  }
+  size {
+    x: 160.0
+    y: 160.0
+  }
+  color {
+    x: 0.165
+    y: 0.29
+    z: 0.145
+  }
+  type: TYPE_BOX
+  texture: "druid/ui_circle_32"
+  id: "button_settings"
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    x: 16.0
+    y: 16.0
+    z: 16.0
+    w: 16.0
+  }
+}
+nodes {
+  scale {
+    x: 3.0
+    y: 3.0
+  }
+  size {
+    x: 50.0
+    y: 40.0
+  }
+  type: TYPE_TEXT
+  text: "M"
+  font: "text"
+  id: "text_settings"
+  parent: "button_settings"
+  inherit_alpha: true
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

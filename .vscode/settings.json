@@ -1,0 +1,63 @@
+{
+	"Lua.diagnostics.globals": [
+		"sys",
+		"on_message",
+		"init",
+		"final",
+		"update",
+		"on_input",
+		"defos",
+		"diags",
+		"filedrop",
+		"clipboard",
+		"screenshot",
+		"share",
+		"pb",
+		"uptime",
+		"lua_script_instance",
+		"spine",
+		"on_reload",
+		"utf8",
+		"lfs",
+		"json",
+		"pprint",
+		"vmath",
+		"msg",
+		"camera",
+		"gui",
+		"go",
+		"window",
+		"sound",
+		"hash",
+		"describe",
+		"before",
+		"after",
+		"it",
+		"editor",
+		"fixed_update",
+		"event_context_manager",
+		"c_system_boid",
+		"drawpixels",
+		"graphics",
+		"go_position_setter"
+	],
+	"Lua.diagnostics.neededFileStatus": {
+		"undefined-field": "Any",
+		"assign-type-mismatch": "Any",
+		"missing-return": "Any",
+		"missing-fields": "Any",
+		"return-type-mismatch": "Any",
+		"lowercase-global": "Any",
+		"unused-local": "Any",
+		"unused-function": "Any"
+	},
+	"Lua.runtime.version": "Lua 5.1",
+	"Lua.runtime.pathStrict": true,
+	"Lua.workspace.library": [
+		"~/Library/Application Support/Cursor/User/globalStorage/astronachos.defold",
+		"~/Library/Application Support/Cursor/User/workspaceStorage/e96410f600af7d79bb361930a1607728/astronachos.defold"
+	],
+	"Lua.workspace.ignorePatterns": [
+		"**/*.md"
+	]
+}

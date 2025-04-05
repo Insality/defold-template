@@ -1,0 +1,68 @@
+images {
+  image: "/assets/images/empty.png"
+}
+images {
+  image: "/assets/images/pixel.png"
+}
+images {
+  image: "/assets/images/panels/ui_circle_8.png"
+}
+images {
+  image: "/assets/images/panels/ui_circle_16.png"
+}
+images {
+  image: "/assets/images/panels/ui_circle_32.png"
+}
+images {
+  image: "/assets/images/panels/ui_circle_64.png"
+}
+images {
+  image: "/assets/images/gui/button_circle.png"
+}
+images {
+  image: "/assets/images/gui/icon_lang.png"
+}
+images {
+  image: "/assets/images/gui/icon_menu_closed.png"
+}
+images {
+  image: "/assets/images/gui/icon_menu_open.png"
+}
+images {
+  image: "/assets/images/gui/icon_music.png"
+}
+images {
+  image: "/assets/images/gui/icon_sound.png"
+}
+images {
+  image: "/assets/images/gui/ui_circle_192.png"
+}
+images {
+  image: "/assets/images/gui/ui_gradient_line.png"
+}
+images {
+  image: "/assets/images/gui/icon ads.png"
+}
+images {
+  image: "/assets/images/gui/vignette_focus.png"
+}
+images {
+  image: "/assets/images/gui/drop_token.png"
+}
+images {
+  image: "/assets/images/gui/button_round_16.png"
+}
+images {
+  image: "/assets/images/gui/icon_heart.png"
+}
+images {
+  image: "/assets/images/grid.png"
+}
+images {
+  image: "/assets/images/gui/dialog_hood.png"
+}
+images {
+  image: "/assets/images/gui/rounded_gradient.png"
+}
+margin: 2
+extrude_borders: 2
