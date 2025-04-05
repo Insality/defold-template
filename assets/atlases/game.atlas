@@ -17,27 +17,6 @@ images {
   image: "/assets/images/pixel.png"
 }
 images {
-  image: "/assets/images/content/cell_single.png"
-}
-images {
-  image: "/assets/images/content/cell_outline_border_8.png"
-}
-images {
-  image: "/assets/images/content/icon_question.png"
-}
-images {
-  image: "/assets/images/content/icon_watcher.png"
-}
-images {
-  image: "/assets/images/content/quest_target.png"
-}
-images {
-  image: "/assets/images/content/quest_target_shadow.png"
-}
-images {
   image: "/assets/images/empty.png"
-}
-images {
-  image: "/entity/player/player.png"
 }
 extrude_borders: 2

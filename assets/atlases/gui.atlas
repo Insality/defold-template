@@ -20,15 +20,6 @@ images {
   image: "/assets/images/gui/button_circle.png"
 }
 images {
-  image: "/assets/images/gui/icon_lang.png"
-}
-images {
-  image: "/assets/images/gui/icon_menu_closed.png"
-}
-images {
-  image: "/assets/images/gui/icon_menu_open.png"
-}
-images {
   image: "/assets/images/gui/icon_music.png"
 }
 images {
@@ -41,25 +32,10 @@ images {
   image: "/assets/images/gui/ui_gradient_line.png"
 }
 images {
-  image: "/assets/images/gui/icon ads.png"
-}
-images {
-  image: "/assets/images/gui/vignette_focus.png"
-}
-images {
-  image: "/assets/images/gui/drop_token.png"
-}
-images {
   image: "/assets/images/gui/button_round_16.png"
 }
 images {
-  image: "/assets/images/gui/icon_heart.png"
-}
-images {
   image: "/assets/images/grid.png"
-}
-images {
-  image: "/assets/images/gui/dialog_hood.png"
 }
 images {
   image: "/assets/images/gui/rounded_gradient.png"
