@@ -1,5 +1,6 @@
 local decore = require("decore.decore")
 local command_flow_game = require("system.flow_game.command_flow_game")
+
 ---@class entity
 ---@field flow_game component.flow_game|nil
 
@@ -97,7 +98,6 @@ end
 
 function M:flow_menu(entity)
 	self.world:addEntity(decore.create_entity("gui_menu"))
-	print("flow_menu")
 end
 
 
