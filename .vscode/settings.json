@@ -55,7 +55,8 @@
 	"Lua.runtime.pathStrict": true,
 	"Lua.workspace.library": [
 		"~/Library/Application Support/Cursor/User/globalStorage/astronachos.defold",
-		"~/Library/Application Support/Cursor/User/workspaceStorage/e96410f600af7d79bb361930a1607728/astronachos.defold"
+		"~/Library/Application Support/Cursor/User/workspaceStorage/e96410f600af7d79bb361930a1607728/astronachos.defold",
+		"~/Library/Application Support/Cursor/User/workspaceStorage/89e8310acea5adb8508d28b18c9335d4/astronachos.defold"
 	],
 	"Lua.workspace.ignorePatterns": [
 		"**/*.md"

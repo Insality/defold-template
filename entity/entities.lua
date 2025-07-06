@@ -1,13 +1,15 @@
-local M = {}
+---@class entities
+local M = {
+	["game_gui"] = require("entity.game_gui.entity_game_gui"),
+}
 
 
-function M.get_entities()
-	return {
-		["debug_panel"] = require("entity.debug_panel.entity_debug_panel"),
-		["gui_menu"] = require("entity.gui_menu.entity_gui_menu"),
-		-- {NEW_ENTITIES_HERE}
-	}
+-- Prehash to able use the entity id from .script properties
+local prehashed_keys = {}
+for key, value in pairs(M) do
+	prehashed_keys[key] = value
+	prehashed_keys[hash(key)] = value
 end
-
+M = prehashed_keys
 
 return M

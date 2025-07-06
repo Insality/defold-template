@@ -1,7 +1,7 @@
 script: "/druid/druid_widget.gui_script"
 fonts {
   name: "text"
-  font: "/core/fonts/text.font"
+  font: "/assets/fonts/text.font"
 }
 textures {
   name: "gui"

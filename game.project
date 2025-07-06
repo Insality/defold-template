@@ -7,17 +7,17 @@ developer = Insality
 platform_name = stub
 dependencies#0 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
 dependencies#1 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
-dependencies#2 = https://github.com/Insality/defold-log/archive/refs/heads/develop.zip
-dependencies#3 = https://github.com/Insality/defold-event/archive/refs/heads/develop.zip
-dependencies#4 = https://github.com/Insality/panthera/archive/refs/heads/develop.zip
+dependencies#2 = https://github.com/Insality/defold-log/archive/refs/tags/6.zip
+dependencies#3 = https://github.com/Insality/defold-event/archive/refs/tags/12.zip
+dependencies#4 = https://github.com/Insality/panthera/archive/refs/tags/runtime.5.zip
 dependencies#5 = https://github.com/Insality/druid/archive/refs/heads/develop.zip
-dependencies#6 = https://github.com/Insality/defold-tweener/archive/refs/heads/develop.zip
-dependencies#7 = https://github.com/Insality/defold-saver/archive/refs/heads/develop.zip
-dependencies#8 = https://github.com/Insality/defold-lang/archive/refs/heads/develop.zip
-dependencies#9 = https://github.com/Insality/decore/archive/refs/heads/develop.zip
+dependencies#6 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.zip
+dependencies#7 = https://github.com/Insality/defold-saver/archive/refs/tags/5.zip
+dependencies#8 = https://github.com/Insality/defold-lang/archive/refs/tags/3.zip
+dependencies#9 = https://github.com/Insality/decore/archive/refs/heads/evolved.zip
 dependencies#10 = https://github.com/Insality/detiled/archive/refs/heads/develop.zip
 dependencies#11 = https://github.com/Insality/defold-token/archive/refs/heads/develop.zip
-dependencies#12 = https://github.com/Insality/defold-quest/archive/refs/heads/main.zip
+dependencies#12 = https://github.com/Insality/defold-quest/archive/refs/heads/develop.zip
 
 [bootstrap]
 main_collection = /loader.collectionc
